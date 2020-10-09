@@ -24,8 +24,8 @@
                     <md-badge id="badge-steps" md-content="5"/>
                     <md-card-header>
                         <div class="md-title">
-                            <md-icon class="fa fa-child md-size-2x"></md-icon>
-                            <span>Número de convivientes</span>
+                            <md-icon class="fa fa-users md-size-2x"></md-icon>
+                            <span> Número de convivientes</span>
                         </div>
                     </md-card-header>
                     <md-card-content>
