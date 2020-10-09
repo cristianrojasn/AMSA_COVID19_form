@@ -5,7 +5,7 @@
         <b-row class="justify-content-center">
             <b-col class="box-respuestas-1" style="min-width: 325px" cols="12" md="6">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="5"/>
+                    <md-badge id="badge-steps" md-content="9"/>
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-briefcase md-size-2x"></md-icon>
@@ -26,10 +26,10 @@
             </b-col>
             <b-col class="box-respuestas-1" style="min-width: 325px" cols="12" md="6">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="6"/>
+                    <md-badge id="badge-steps" md-content="10"/>
                     <md-card-header>
                         <div class="md-title">
-                            <md-icon class="fa fa-briefcase md-size-2x"></md-icon>
+                            <md-icon class="fa fa-building md-size-2x"></md-icon>
                             <span style="margin-left: 10px;">Piso</span>
                         </div>
                     </md-card-header>

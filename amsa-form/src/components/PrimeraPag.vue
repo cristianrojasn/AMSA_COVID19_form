@@ -1,31 +1,10 @@
 <template>
     <div class="md-layout md-guttter" style="display:flex; justify-content:center;">
         <b-row class="row-length">
-            <!--RUT-->
-            <b-col class="box-respuestas-1" cols="12" md="4">
-                <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="1"/>
-                    <md-card-header>
-                        <div class="md-title">
-                            <md-icon class="fa fa-user md-size-2x"></md-icon>
-                            <span>RUT</span>
-                        </div>
-                        <p class="md-caption">
-                        (SIN GUION: ejemplo 123456789 - el k se reemplaza con 0)
-                        </p>
-                    </md-card-header>
-                    <md-card-content class="bottom">
-                        <md-field>
-                            <label for="rut">123456789</label>
-                            <md-input name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
-                        </md-field>
-                    </md-card-content>
-                </md-card>
-            </b-col>
             <!--Nombre-->
             <b-col class="box-respuestas-1" cols="12" md="4">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="2"/>
+                    <md-badge id="badge-steps" md-content="1"/>
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-user md-size-2x"></md-icon>
@@ -43,7 +22,7 @@
             <!--Apellido-->
             <b-col class="box-respuestas-1" cols="12" md="4">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="3"/>
+                    <md-badge id="badge-steps" md-content="2"/>
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-user md-size-2x"></md-icon>
@@ -58,6 +37,27 @@
                     </md-card-content>
                 </md-card>
             </b-col>
+                    <!--RUT-->
+            <b-col class="box-respuestas-1" cols="12" md="4">
+                <md-card class="md-layout-item box-respuestas-1">
+                    <md-badge id="badge-steps" md-content="3"/>
+                    <md-card-header>
+                        <div class="md-title">
+                            <md-icon class="fa fa-user md-size-2x"></md-icon>
+                            <span>RUT</span>
+                        </div>
+                        <p class="md-caption">
+                        (SIN GUION: ejemplo 123456789 - el k se reemplaza con 0)
+                        </p>
+                    </md-card-header>
+                    <md-card-content class="bottom">
+                        <md-field>
+                            <label for="rut">123456789</label>
+                            <md-input name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
+                        </md-field>
+                    </md-card-content>
+                </md-card>
+            </b-col>    
         </b-row>
         <!--Fila con correo y número de contacto-->
         <!--Datos de la empresa-->
@@ -68,7 +68,7 @@
         <b-row class="row-length">
             <b-col class="box-respuestas-1" cols="12" md="6">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="4"/>
+                    <md-badge id="badge-steps" md-content="7"/>
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-user md-size-2x"></md-icon>
@@ -86,10 +86,10 @@
             <!--Número de contacto-->
             <b-col class="box-respuestas-1" cols="12" md="6">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="5"/>
+                    <md-badge id="badge-steps" md-content="8"/>
                     <md-card-header>
                         <div class="md-title">
-                            <md-icon class="fa fa-user md-size-2x"></md-icon>
+                            <md-icon class="fa fa-address-book md-size-2x"></md-icon>
                             <span>Número de contacto</span>
                         </div>
                     </md-card-header>
@@ -130,7 +130,7 @@ export default {
     },
     components: {
         SelCumple,
-        SelEmpresas
+        SelEmpresas,
     }
     
 }

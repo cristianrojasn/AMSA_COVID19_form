@@ -2,7 +2,7 @@
     <div class="b-day">
         <!--Fecha de nacimiento-->
         <b-row class="justify-content-center">
-            <b-col class="box-respuestas-1" cols="12" md="6">
+            <b-col class="box-respuestas-1" cols="12" md="4">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="4"/>
                     <md-card-header>
@@ -12,9 +12,48 @@
                         </div>
                     </md-card-header>
                     <md-card-content class="bottom">
+                        <md-datepicker v-model="cumple">
+                        <label>Ingrese fecha</label>
+                        </md-datepicker>
+                    </md-card-content>
+                </md-card>
+            </b-col>
+            <!--Numero de convivientes-->
+            <b-col class="box-respuestas-1" cols="12" md="4">
+                <md-card class="md-layout-item box-respuestas-1">
+                    <md-badge id="badge-steps" md-content="5"/>
+                    <md-card-header>
+                        <div class="md-title">
+                            <md-icon class="fa fa-child md-size-2x"></md-icon>
+                            <span>Número de convivientes</span>
+                        </div>
+                    </md-card-header>
+                    <md-card-content>
+                    <md-field>
+                        <label>Convivientes</label>
+                        <md-input v-model="conv" type="number"></md-input>
+                    </md-field>
+                    </md-card-content>
+                </md-card>
+            </b-col>
+            <!--Previsión-->
+            <b-col class="box-respuestas-1" cols="12" md="4">
+                <md-card class="md-layout-item box-respuestas-1">
+                    <md-badge id="badge-steps" md-content="6"/>
+                    <md-card-header>
+                        <div class="md-title">
+                            <md-icon class="fa fa-medkit md-size-2x"></md-icon>
+                            <span style="margin-left: 10px;">Previsión</span>
+                        </div>
+                    </md-card-header>
+                    <md-card-content class="bottom">
                         <md-field>
-                        <datepicker placeholder="Select Date" v-model="vModelExample"></datepicker>
-                        <!--<md-input type="fecha" name="fecha" id="fecha"  autocomplete="given-fecha" v-model="numeroTel"/>-->
+                            <label for="prevision">Previsión</label>
+                            <md-select name="prevision" id="prevision" v-model="prevision" md-dense>
+                                <md-option v-for="prev of previsiones" :key="prev" :value="prev">
+                                    {{ prev }}
+                                </md-option>
+                            </md-select>
                         </md-field>
                     </md-card-content>
                 </md-card>
@@ -23,13 +62,19 @@
     </div>
 </template>
 
+
+
 <script>
+import {previsiones} from '../variables.js'
 
 export default {
     name: "Selcumple",
     data() {
         return {
+            previsiones,
             cumple:null,
+            conv:null,
+            prevision:null,
         }
     }
 }
