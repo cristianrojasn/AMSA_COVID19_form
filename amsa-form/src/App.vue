@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    >
+    <AMSAform/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Footer from './components/Footer.vue';
+import AMSAform from './components/AMSAform.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Footer,
+    AMSAform
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  background-image: linear-gradient(
+    to top,
+    rgb(51, 121, 147) 0%,
+    rgb(171, 214, 216) 100%
+  );
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px; */
+}
+.md-menu-content.md-select-menu {
+  width: auto;
+  /*max-width: 400px !important;*/
+}
+.md-title {
+  font-size: 20px !important;
 }
 </style>
