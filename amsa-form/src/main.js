@@ -4,7 +4,6 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 import VueMaterial from 'vue-material';
-import Datepicker from 'vuejs-datepicker';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
