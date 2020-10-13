@@ -1,89 +1,78 @@
-<!---------- Seccion Gerencia --------->
+<!---------- Seccion Región --------->
 <template>
     <div class="comuna">
         <b-row class="justify-content-center">
-            <b-col class="box-respuestas-1" cols="12" md="3">
+            <b-col class="box-respuestas-1" cols="12" md="6">
             <md-card class="md-layout-item box-respuestas-1 rounded">
                 <md-badge
                 id="badge-steps"
-                md-content="2"
+                md-content="11"
                 />
                 <md-card-header>
                 <div class="md-title">
                     <md-icon class="fa fa-sitemap md-size-2x"></md-icon>
-                    Gerencia
+                    Región
                 </div>
                 </md-card-header>
                 <md-card-content class="bottom">
-                <md-field :class="getValidationClass('gerencia')">
-                    <label for="gerencia">Gerencia</label>
-                    <md-select
-                    name="gerencia"
-                    id="gerencia"
-                    v-model="form.gerencia"
-                    :disabled="sending"
-                    @md-selected="clearAfterGroup"
-                    >
+                <md-field>
+                    <label for="region">Región</label>
+                    <md-select name="region" id="region" v-model="reg">
                     <md-option
-                        v-for="op in Object.keys(opciones)"
-                        :key="op"
-                        :value="op"
-                    >{{ op }}</md-option>
+                        v-for="(regi,index) of Object.keys(comunas)"
+                        :key="regi"
+                        :value="Object.keys(comunas)[index]"
+                    >{{ regi }}</md-option>
                     </md-select>
-                    <span
+                    <!-- <span
                     class="md-error"
                     v-if="!$v.form.gerencia.required"
-                    >Se requiere que ingrese la gerencia</span>
+                    >Se requiere que ingrese la región</span>
                     <span
                     class="md-error"
                     v-else-if="!$v.form.gerencia.minlength"
-                    >El dato ingresado no cumple con el largo mínimo</span>
+                    >El dato ingresado no cumple con el largo mínimo</span> -->
                 </md-field>
                 </md-card-content>
             </md-card>
             </b-col>
-            <!-------- Fin Seccion Gerencia ------->
-            <!---------- Seccion Periodo ---------->
+            <!-------- Fin Seccion Región ------->
+            <!---------- Seccion Comuna ---------->
             <b-col
             class="box-respuestas-1"
             cols="12"
-            md="3"
+            md="6"
             >
             <md-card class="md-layout-item box-respuestas-1 rounded">
                 <md-badge
                 id="badge-steps"
-                md-content="3"
+                md-content="12"
                 />
                 <md-card-header>
                 <div class="md-title">
                     <md-icon class="fa fa-calendar md-size-2x"></md-icon>
-                    Período
+                    Comuna
                 </div>
                 </md-card-header>
                 <md-card-content class="bottom">
-                <md-field :class="getValidationClass('periodo')">
-                    <label for="periodo">Periodo</label>
+                <md-field>
+                    <label for="comuna">Comuna</label>
                     <label
-                    v-if="form.gerencia === null"
-                    for="periodo"
-                    >Periodo</label>
+                    v-if="reg === null"
+                    for="comuna"
+                    >Comuna</label>
                     <md-select
                     v-else
-                    name="periodo"
-                    id="periodo"
-                    v-model="form.periodo"
-                    :disabled="sending"
-                    @md-selected="clearAfterPeriod"
+                    name="comuna"
+                    id="comuna"
+                    v-model="com"
                     >
                     <md-option
-                        v-for="op in Object.keys(
-                        opciones[form.gerencia]['periodicidad']
-                        )"
-                        :key="op"
-                        :value="op"
-                    >{{ op }}</md-option>
+                        v-for="comu in comunas[reg]"
+                        :key="comu"
+                        :value="comu"
+                    >{{ comu }}</md-option>
                     </md-select>
-                    <span class="md-error">El periodo es requerido</span>
                 </md-field>
                 </md-card-content>
             </md-card>
@@ -93,20 +82,19 @@
 </template>
 
 <script>
-//import {previsiones} from '../variables.js'
-/*
+import {comunas} from '../variables.js'
+
 export default {
     name: "Selcomuna",
     data() {
         return {
-            previsiones,
-            cumple:null,
-            conv:null,
-            prevision:null,
+            comunas,
+            reg:null,
+            com:null,
         }
     }
 }
-*/
+
 </script>
 
 <style scoped>

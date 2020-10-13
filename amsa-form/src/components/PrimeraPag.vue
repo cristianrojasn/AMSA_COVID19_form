@@ -107,7 +107,7 @@
             <!--Empresa-->
         <SelEmpresas/>
         <!--<SelEmpresas/>-->
-        
+        <SelComuna/>     
     </div>
 </template>
 
@@ -115,6 +115,7 @@
 
 import SelEmpresas from '../components/SelEmpresas.vue';
 import SelCumple from '../components/b-day.vue';
+import SelComuna from '../components/comuna.vue';
 
 export default {
     name: "DatosPersonales",
@@ -131,6 +132,7 @@ export default {
     components: {
         SelCumple,
         SelEmpresas,
+        SelComuna,
     }
     
 }

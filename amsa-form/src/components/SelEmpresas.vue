@@ -36,7 +36,7 @@
                     <md-card-content class="bottom">
                         <md-field>
                             <label for="area">Piso de destino</label>
-                            <md-select name="area" id="area" v-model="Area" md-dense>
+                            <md-select name="area" id="area" v-model="area" md-dense>
                                 <md-option v-for="ar of areas" :key="ar" :value="ar">
                                     {{ ar }}
                                 </md-option>
