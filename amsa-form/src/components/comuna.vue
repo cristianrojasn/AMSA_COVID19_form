@@ -1,4 +1,4 @@
-<!---------- Seccion Región --------->
+<!---------- Seccion Región y comuna --------->
 <template>
     <div class="comuna">
         <b-row class="justify-content-center">
@@ -10,8 +10,8 @@
                 />
                 <md-card-header>
                 <div class="md-title">
-                    <md-icon class="fa fa-sitemap md-size-2x"></md-icon>
-                    Región
+                    <md-icon class="fa fa-location-arrow md-size-2x"></md-icon>
+                    Comuna
                 </div>
                 </md-card-header>
                 <md-card-content class="bottom">
@@ -33,10 +33,30 @@
                     v-else-if="!$v.form.gerencia.minlength"
                     >El dato ingresado no cumple con el largo mínimo</span> -->
                 </md-field>
+
+                <md-field>
+                    <label for="comuna">Comuna</label>
+                    <label
+                    v-if="reg === null"
+                    for="comuna"
+                    >Comuna</label>
+                    <md-select
+                    v-else
+                    name="comuna"
+                    id="comuna"
+                    v-model="com"
+                    >
+                    <md-option
+                        v-for="comu in comunas[reg]"
+                        :key="comu"
+                        :value="comu"
+                    >{{ comu }}</md-option>
+                    </md-select>
+                </md-field>                
                 </md-card-content>
             </md-card>
             </b-col>
-            <!-------- Fin Seccion Región ------->
+            <!-------- Fin Seccion Región y comuna ------->
             <!---------- Seccion Comuna ---------->
             <b-col
             class="box-respuestas-1"

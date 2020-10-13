@@ -27,7 +27,7 @@
                     class="responsive-img"
                     width="300px"
                     height="300px"
-                    src="../assets/mlp-logo2.png"
+                    src="../assets/AMSA-logo.png"
                     />
                   </b-col>
                 </b-row>
