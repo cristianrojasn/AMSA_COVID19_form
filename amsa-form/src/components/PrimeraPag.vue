@@ -71,8 +71,11 @@
                     <md-badge id="badge-steps" md-content="7"/>
                     <md-card-header>
                         <div class="md-title">
-                            <md-icon class="fa fa-user md-size-2x"></md-icon>
-                            <span>Correo electrónico</span>
+                            <md-icon class="fa fa-envelope md-size-2x"></md-icon>
+                            <span> Correo electrónico</span>
+                            <p class="md-caption">
+                            ¡Su correo electronico es muy importante para recibir la aprobación!
+                            </p>
                         </div>
                     </md-card-header>
                     <md-card-content class="bottom">

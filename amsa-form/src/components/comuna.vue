@@ -2,8 +2,8 @@
 <template>
     <div class="comuna">
         <b-row class="justify-content-center">
-            <b-col class="box-respuestas-1" cols="12" md="6">
-            <md-card class="md-layout-item box-respuestas-1 rounded">
+            <b-col class="box-respuestas-1" cols="12" md="4">
+            <md-card class="md-layout-item box-respuestas-1">
                 <md-badge
                 id="badge-steps"
                 md-content="11"
@@ -11,7 +11,7 @@
                 <md-card-header>
                 <div class="md-title">
                     <md-icon class="fa fa-location-arrow md-size-2x"></md-icon>
-                    Comuna
+                    Comuna de residencia
                 </div>
                 </md-card-header>
                 <md-card-content class="bottom">
@@ -61,56 +61,80 @@
             <b-col
             class="box-respuestas-1"
             cols="12"
-            md="6"
+            md="4"
             >
-            <md-card class="md-layout-item box-respuestas-1 rounded">
+            <md-card class="md-layout-item box-respuestas-1">
                 <md-badge
                 id="badge-steps"
                 md-content="12"
                 />
                 <md-card-header>
                 <div class="md-title">
-                    <md-icon class="fa fa-calendar md-size-2x"></md-icon>
-                    Comuna
+                    <md-icon class="fa fa-envelope md-size-2x"></md-icon>
+                    Correo Supervisor 
                 </div>
                 </md-card-header>
                 <md-card-content class="bottom">
-                <md-field>
-                    <label for="comuna">Comuna</label>
-                    <label
-                    v-if="reg === null"
-                    for="comuna"
-                    >Comuna</label>
-                    <md-select
-                    v-else
-                    name="comuna"
-                    id="comuna"
-                    v-model="com"
-                    >
-                    <md-option
-                        v-for="comu in comunas[reg]"
-                        :key="comu"
-                        :value="comu"
-                    >{{ comu }}</md-option>
-                    </md-select>
-                </md-field>
+                    <md-field>
+                        <label for="correo_sup">Correo supervisor</label>
+                        <md-input type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
+                    </md-field>
                 </md-card-content>
             </md-card>
             </b-col>
+            <!---------- FIN Seccion Comuna ---------->
+            <!---------- Seccion Cargo y turno ---------->
+            <b-col class="box-respuestas-1" cols="12" md="4">
+                <md-card class="md-layout-item box-respuestas-1">
+                    <md-badge id="badge-steps" md-content="13"/>
+                    <md-card-header>
+                        <div class="md-title">
+                            <md-icon class="fa fa-id-badge md-size-2x"></md-icon>
+                            <span style="margin-left: 10px;">Cargo y turno</span>
+                        </div>
+                    </md-card-header>
+                    <md-card-content class="bottom">
+                        <md-field>
+                        <!---------- Seccion Cargo ---------->    
+                            <label for="puestos">Cargo</label>
+                            <md-select name="puestos" id="puestos" v-model="car" md-dense>
+                                <md-option v-for="cargo of cargos" :key="cargo" :value="cargo">
+                                    {{ cargo }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                        <!---------- Seccion turno ---------->
+                        <md-field>
+                            <label for="turno">Turno</label>
+                            <md-select name="turno" id="turno" v-model="turn" md-dense>
+                                <md-option v-for="tu of turnos" :key="tu" :value="tu">
+                                    {{ tu }}
+                                </md-option>
+                            </md-select>
+                        </md-field>                        
+                    </md-card-content>
+                </md-card>
+            </b-col>
+            <!---------- Fin Cargo y turno ---------->
         </b-row>
     </div>
 </template>
 
 <script>
-import {comunas} from '../variables.js'
+import {comunas,cargos,turnos} from '../variables.js'
 
 export default {
     name: "Selcomuna",
     data() {
         return {
             comunas,
+            cargos,
+            turnos,
             reg:null,
             com:null,
+            correoSup:null,
+            car:null,
+            turn:null,
         }
     }
 }

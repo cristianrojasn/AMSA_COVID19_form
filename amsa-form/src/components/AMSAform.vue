@@ -41,6 +41,11 @@
             <md-card-content>
               <DatosPersonales/>
             </md-card-content>
+            <md-divider></md-divider>
+            <!--Inicio del contenido de COVID-->
+            <md-card-content>
+            </md-card-content>
+
           </md-card>
       </form>
     </div>
