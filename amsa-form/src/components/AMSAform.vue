@@ -42,10 +42,36 @@
               <DatosPersonales/>
             </md-card-content>
             <md-divider></md-divider>
+            <md-card-header>
+              <!--Contenido del título de sección 2-->
+              <b-container fluid>
+                <b-row class="md-display-4">
+                  <b-col>
+                    <h4
+                      id="titulo-seccion3"
+                      class="md-headline"
+                      >
+                      <b>Condiciones de salud y síntomas COVID</b>
+                    </h4>
+                  </b-col>
+                </b-row>
+                <!-- Decripción -->
+                <b-row class="md-display-4">
+                  <b-col>
+                    <h4 id="titulo-seccion3" class="md-subheading">
+                      <ul>
+                        <li>SI TIENE alguna o varias ENFERMEDAD(ES) CRÓNICA(S) usted <b>debe comunicarse con su jefatura</b> para recibir instrucciones.</li>
+                        <li>Si usted es comunicado durante su jornada laboral que algún familiar o alguna de las personas con las que usted convive o que en su vuelo o medio de traslado al trabajo <b>presentó casos positivos</b> Covid-19 DEBE DAR <b>AVISO INMEDIATO a su supervisor</b>.</li>
+                      </ul>                       
+                    </h4>
+                  </b-col>
+                </b-row>                
+              </b-container>
+            </md-card-header>
             <!--Inicio del contenido de COVID-->
             <md-card-content>
+              <Selpreexistencias/>
             </md-card-content>
-
           </md-card>
       </form>
     </div>
@@ -54,10 +80,13 @@
 
 <script>
 import DatosPersonales from '../components/PrimeraPag.vue';
+import Selpreexistencias from '../components/preexistencias.vue';
+
 export default {
     name: 'AMSAform',
     components: {
       DatosPersonales,
+      Selpreexistencias,
     }
 }
 </script>

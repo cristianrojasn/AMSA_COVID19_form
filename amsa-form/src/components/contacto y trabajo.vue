@@ -43,13 +43,21 @@
                         {{ ar }}
                     </md-option>
                 </md-select>
-            </md-field>                            
+            </md-field>
+    <!---------- Seccion VP---------->        
+            <md-autocomplete name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
+            <label>Vicepresidencia</label>
+            </md-autocomplete>
+    <!---------- Seccion empresa---------->        
+            <md-autocomplete name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
+            <label>Empresa</label>
+            </md-autocomplete>                                                 
         </md-card-content>
     </div>
 </template>
 
 <script>
-import {cargos,turnos,areas} from '../variables.js'
+import {cargos,turnos,areas,empresas,vicepresidencias} from '../variables.js'
 
 export default {
     name: "Selcontacto",
@@ -58,12 +66,16 @@ export default {
             cargos,
             turnos,
             areas,
+            empresas,
+            vicepresidencias,
             correoSup:null,
             car:null,
             turn:null,
             correo:null,
             numeroTel:null,
             area:null,
+            empresa:null,
+            vicepresidencia:null,
         }
     }
 }
