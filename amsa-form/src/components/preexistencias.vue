@@ -2,7 +2,7 @@
     <div class="md-layout md-guttter" style="display:flex; justify-content:center;">
         <b-row class="row-length">
             <!----PREEXISTENCIAS---->
-            <b-col class="box-respuestas-1" cols="12" md="6">
+            <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="3"/>
                     <md-card-header>
@@ -27,8 +27,10 @@
                     </md-card-content>    
                 </md-card>
             </b-col>
+        </b-row>
+        <b-row>     
             <!----Sintomas COVID---->
-            <b-col class="box-respuestas-1" cols="12" md="6">
+            <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="4"/>
                     <md-card-header>
@@ -41,7 +43,6 @@
                     </md-card-header>    
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
-                            <font size="1">
                             <table style="width:100%">
                                 <tr v-for="(itemes,indice) of ArrSintomas" :key="itemes">
                                     <td>
@@ -49,7 +50,6 @@
                                     </td>
                                 </tr>
                             </table>
-                            </font>
                         </div>    
                     </md-card-content>    
                 </md-card>
@@ -57,7 +57,7 @@
         </b-row>
         <b-row class="row-length">
             <!----CASOS CONFIRMADOS DE COVID O ESPERA PCR---->
-            <b-col class="box-respuestas-1" cols="12" md="6">
+            <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="5"/>
                     <md-card-header>
@@ -72,7 +72,7 @@
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
-                                <tr v-for="(iteracion,indice) of ArrCaso" :key="iteracion">
+                                <tr v-for="(iteracion,indice) of ArrCasos" :key="iteracion">
                                     <td>
                                         <md-checkbox v-model="casos[indice]" :value="iteracion">{{ iteracion }}</md-checkbox>
                                     </td>
@@ -82,8 +82,10 @@
                     </md-card-content>    
                 </md-card>
             </b-col>
-            <!----Sintomas COVID---->
-            <b-col class="box-respuestas-1" cols="12" md="6">
+        </b-row>
+        <b-row>
+            <!-------------------------VIAJES----------------------------->
+            <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="6"/>
                     <md-card-header>
@@ -123,7 +125,8 @@
                   </b-col>
         </b-row>
         <b-row>
-            <b-col class="box-respuestas-1" cols="12" md="6">
+             <!-------------------------CONTACTO COVID----------------------------->
+            <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="6"/>
                     <md-card-header>
@@ -136,13 +139,45 @@
                             sociales, familiares o de cualquier tipo, en medios de transporte aéreo o 
                             terrestre o de cualquier otra forma o circunstancia)?
                             </p>
-                            <img :src="'../assets/AMSA-logo.png'" :alt="'Contacto COVID'" class="imagenContacto">
+                            <img
+                            class="centered"
+                            width="280px"
+                            height="280px"
+                            src="../assets/tablero.png"
+                            >
+                            <!-- <img :src="'../assets/AMSA-logo.png'" :alt="'Contacto COVID'" class="imagenContacto"> -->
                         </div>
                     </md-card-header>    
                     <md-card-content>
                         <div>
-                            <md-radio v-model="radio" value="my-radio">Sí</md-radio>
-                            <md-radio v-model="radio" value="my-radio">No</md-radio>
+                            <md-radio v-model="radio" value="Si">Sí</md-radio>
+                            <md-radio v-model="radio" value="No">No</md-radio>
+                        </div>
+                    </md-card-content>    
+                </md-card>
+            </b-col>
+        </b-row>
+        <b-row>
+             <!-------------------------Profesionales de la salud----------------------------->
+            <b-col class="box-respuestas-1" cols="12" md="12">
+                <md-card class="md-layout-item box-respuestas-1">
+                    <md-badge id="badge-steps" md-content="7"/>
+                    <md-card-header>
+                        <div class="md-title">
+                            <md-icon class="fa fa-hospital-o md-size-2x"></md-icon>
+                            <span style="margin-left: 18px">¿Alguna de las personas con las que convive, trabaja o ha visitado 
+                           trabaja en alguna entidad que maneje pacientes Covid-19?</span>
+                            <p class="md-caption">
+                            Hospitales, centros de salud, residencias sanitarias o que maneje muestras de laboratorio 
+                            para procesar exámenes de diagnóstico para Covid-19 (laboratorios, clínicas, 
+                            toma de pruebas en espacios públicos tipo “drive thru”, etc) 
+                            </p>
+                        </div>
+                    </md-card-header>    
+                    <md-card-content>
+                        <div>
+                            <md-radio v-model="salud" value="Si2">Sí</md-radio>
+                            <md-radio v-model="salud" value="No2">No</md-radio>
                         </div>
                     </md-card-content>    
                 </md-card>
@@ -168,6 +203,7 @@ export default {
             casos:{},
             viajes:{},
             radio:null,
+            salud:null,
         }
     }
 }
@@ -213,6 +249,14 @@ methods: {
 .row-length {
     width: 80%
 }
+
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
 @media screen and (max-width: 800px){
     .row-length {
     width: 100%;
