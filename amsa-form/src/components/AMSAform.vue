@@ -133,6 +133,11 @@ export default {
     components: {
       DatosPersonales,
       Selpreexistencias,
+    },
+    methods: {
+      update(value){
+        this[value.campo] = value.data
+      },
     }
 }
 </script>
