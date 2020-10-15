@@ -164,6 +164,7 @@
 
 <script>
 import {cargos,turnos,areas,empresas,vicepresidencias,previsiones,comunas} from '../variables.js'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
     name: "DatosPersonales",
@@ -257,6 +258,54 @@ export default {
             }
         }*/
     },
+
+    validations: {
+    rut: {
+      required
+    },
+    nombreSol: {
+      required
+    },
+    apellidoSol: {
+      required
+    },
+    numeroTel: {
+      required
+    },
+    conv: {
+      required
+    },
+    prevision: {
+      required
+    },
+    reg: {
+      required
+    },
+    com: {
+      required
+    },
+    correo: {
+      required
+    },
+    correoSup: {
+      required
+    },
+    car: {
+      required
+    },
+    turn: {
+      required
+    },
+    area: {
+      required
+    },
+    empresa: {
+      required
+    },
+    vicepresidencia: {
+      required
+    },
+  },
 }
 </script>
 
