@@ -18,6 +18,10 @@
                         <md-field>
                             <label for="nombre">Nombre</label>
                             <md-input @input="updateNombreSol" name="nombre" id="nombre"  autocomplete="given-name" v-model="nombreSol"/>
+                            <span
+                            class="md-error"
+                            v-if="!$v.nombreSol.required"
+                            >Se requiere que ingrese su nombre</span>
                         </md-field>
                         <!-- Apellido -->
                         <md-field>
