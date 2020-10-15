@@ -29,7 +29,61 @@
                             </p>
                         </div>
                     </md-card-header>
-                    <SelContacto/>
+                    <!-- <div class="contacto"> -->
+                        <md-card-content>
+                    <!---------- Seccion Nimero telefono--------->
+                        <md-field>
+                            <label for="numeroTel">Número de teléfono</label>
+                            <span class="md-prefix">+569</span>
+                            <md-input type="tel" name="numeroTel" id="numeroTel"  autocomplete="given-name" v-model="numeroTel"/>
+                        </md-field>
+                    <!---------- Seccion Correo personal--------->
+                        <md-field>
+                            <label for="correo">Correo</label>
+                            <md-input type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
+                        </md-field>    
+                <!---------- Seccion Correo supervisor --------->
+                        <md-field>
+                            <label for="correo_sup">Correo supervisor</label>
+                            <md-input type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
+                        </md-field>
+                <!---------- Seccion Cargos --------->        
+                        <md-field>
+                            <label for="puestos">Cargo</label>
+                            <md-select name="puestos" id="puestos" v-model="car" md-dense>
+                                <md-option v-for="cargo of cargos" :key="cargo" :value="cargo">
+                                    {{ cargo }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                <!---------- Seccion turno ---------->
+                        <md-field>
+                            <label for="turno">Turno</label>
+                            <md-select name="turno" id="turno" v-model="turn" md-dense>
+                                <md-option v-for="tu of turnos" :key="tu" :value="tu">
+                                    {{ tu }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                <!---------- Seccion Piso ---------->        
+                        <md-field>
+                            <label for="area">Piso de destino</label>
+                            <md-select name="area" id="area" v-model="area" md-dense>
+                                <md-option v-for="ar of areas" :key="ar" :value="ar">
+                                    {{ ar }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                <!---------- Seccion VP---------->        
+                        <md-autocomplete name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
+                        <label>Vicepresidencia</label>
+                        </md-autocomplete>
+                <!---------- Seccion empresa---------->        
+                        <md-autocomplete name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
+                        <label>Empresa</label>
+                        </md-autocomplete>                                                 
+                    </md-card-content>
+                    <!-- </div> -->
                 </md-card>
             </b-col>   
         </b-row>        
@@ -37,18 +91,29 @@
 </template>
 
 <script>
-
-import SelContacto from '../components/contacto y trabajo.vue';
+import {cargos,turnos,areas,empresas,vicepresidencias} from '../variables.js'
 import Selpersonal from '../components/datos personales.vue';
 
 export default {
     name: "DatosPersonales",
     data() {
         return {
+            cargos,
+            turnos,
+            areas,
+            empresas,
+            vicepresidencias,
+            correoSup:null,
+            car:null,
+            turn:null,
+            correo:null,
+            numeroTel:null,
+            area:null,
+            empresa:null,
+            vicepresidencia:null,    
         }
     },
     components: {
-        SelContacto,
         Selpersonal,
     }
     
