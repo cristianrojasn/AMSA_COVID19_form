@@ -159,6 +159,90 @@ background-image: repeating-linear-gradient(
 );
 /* background: linear-gradient(130deg, #fdfbfb 60%, rgb(197, 197, 197) 60%); */
 }
+
+.box-respuestas {
+  min-width: 325px;
+  margin-top: 30px;
+  padding: 1rem;
+  border-radius: 25px;
+  margin: 10px;
+}
+.rounded {
+  border-radius: 25px !important;
+}
+.box-100 {
+  min-width: 325px;
+  margin-top: 30px;
+  padding: 1rem;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.box-100 {
+  min-width: 325px;
+  margin-top: 30px;
+  padding: 1rem;
+  border-radius: 25px;
+  margin: 10px;
+}
+.box-compromisos {
+  max-width: 1800px;
+  width: 1800px;
+}
+.box-respuestas-1 {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  border-radius: 25px;
+  margin-bottom: 0.5em;
+}
+#banner-red {
+  background-color: red;
+}
+#banner-green {
+  background-color: green;
+}
+#badge-steps {
+  background-color: rgb(51, 121, 147);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 45px;
+  width: 45px;
+  margin-top: -10px;
+  font-size: 25px;
+  font-weight: 700;
+  border-style: solid;
+  border-color: rgb(228, 172, 59);
+  border-width: 3px;
+}
+.box-respuestas-2 {
+  max-width: 800px;
+  min-width: 350px;
+  margin: 1rem;
+  padding-top: 1rem;
+  border-radius: 25px;
+}
+.table-selector {
+  max-width: 800px;
+}
+.compromisos {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.md-error {
+  color: red;
+}
+/*
+table {
+  width: 100%;
+  table-layout: fixed;
+  th {
+    text-align: left;
+  }
+}
+*/
+
 @media screen and (max-width: 1080px) {
   .master-form form {
     width: 100%;
