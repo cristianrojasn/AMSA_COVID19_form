@@ -118,6 +118,13 @@
                 </b-row>                
               </b-container>
             </md-card-header>
+            <md-card-actions style="justify-content: center;">
+              <md-button
+              type="submit"
+              style="background-color: rgb(51, 121, 147); width: 150px; border-style: solid;border-color: rgb(228, 172, 59);border-width: 2px;"
+              class="md-raised md-primary"
+              >Enviar</md-button>
+            </md-card-actions>
           </md-card>
       </form>
     </div>
@@ -133,6 +140,11 @@ export default {
     components: {
       DatosPersonales,
       Selpreexistencias,
+    },
+    methods: {
+      update(value){
+        this[value.campo] = value.data
+      },
     }
 }
 </script>
