@@ -19,7 +19,7 @@
                             <table style="width:100%">
                                 <tr v-for="(opciones,indice) of ArrPreex" :key="opciones">
                                     <td>
-                                        <md-checkbox v-model="preex[indice]" :value="opciones">{{ opciones }}</md-checkbox>
+                                        <md-checkbox @input="updatePreexistencias" v-model="preex[indice]" :value="opciones">{{ opciones }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -46,7 +46,7 @@
                             <table style="width:100%">
                                 <tr v-for="(itemes,indice) of ArrSintomas" :key="itemes">
                                     <td>
-                                        <md-checkbox v-model="sintomas[indice]" :value="itemes">{{ itemes }}</md-checkbox>
+                                        <md-checkbox @input="updateSintomas" v-model="sintomas[indice]" :value="itemes">{{ itemes }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -74,7 +74,7 @@
                             <table style="width:100%">
                                 <tr v-for="(iteracion,indice) of ArrCasos" :key="iteracion">
                                     <td>
-                                        <md-checkbox v-model="casos[indice]" :value="iteracion">{{ iteracion }}</md-checkbox>
+                                        <md-checkbox @input="updateCasos" v-model="casos[indice]" :value="iteracion">{{ iteracion }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -102,7 +102,7 @@
                             <table style="width:100%">
                                 <tr v-for="(items,indice) of ArrViajes" :key="items">
                                     <td>
-                                        <md-checkbox v-model="viajes[indice]" :value="items">{{ items }}</md-checkbox>
+                                        <md-checkbox @input="updateViajes" v-model="viajes[indice]" :value="items">{{ items }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -150,8 +150,8 @@
                     </md-card-header>    
                     <md-card-content>
                         <div>
-                            <md-radio v-model="radio" value="Si">Sí</md-radio>
-                            <md-radio v-model="radio" value="No">No</md-radio>
+                            <md-radio @input="updateContacto" v-model="radio" value="Si">Sí</md-radio>
+                            <md-radio @input="updateContacto" v-model="radio" value="No">No</md-radio>
                         </div>
                     </md-card-content>    
                 </md-card>
@@ -176,8 +176,8 @@
                     </md-card-header>    
                     <md-card-content>
                         <div>
-                            <md-radio v-model="salud" value="Si2">Sí</md-radio>
-                            <md-radio v-model="salud" value="No2">No</md-radio>
+                            <md-radio @input="updateSalud" v-model="salud" value="Si2">Sí</md-radio>
+                            <md-radio @input="updateSalud" v-model="salud" value="No2">No</md-radio>
                         </div>
                     </md-card-content>    
                 </md-card>
@@ -205,15 +205,34 @@ export default {
             radio:null,
             salud:null,
         }
-    }
-}
-/*
-methods: {
-    getImagesUrl('imagenContacto'){
+    },
+    methods: {
+        //Emitir datos al componente padre
+        /*
+        getImagesUrl('imagenContacto'){
         return require('../assets/AMSA-logo.png')
-    }
-*/
-
+        }
+        */
+        updatePreexistencias(){
+            this.$emit('updateData', {data: this.ArrPreex, campo: "ArrPreex"})
+        },
+        updateSintomas(){
+            this.$emit('updateData', {data: this.sintomas, campo: "sintomas"})
+        },
+        updateCasos(){
+            this.$emit('updateData', {data: this.casos, campo: "casos"})
+        },
+        updateViajes(){
+            this.$emit('updateData', {data: this.viajes, campo: "viajes"})
+        },
+        updateContacto(){
+            this.$emit('updateData', {data: this.radio, campo: "radio"})
+        },
+        updateSalud(){
+            this.$emit('updateData', {data: this.salud, campo: "salud"})
+        },
+    },
+}
 </script>
 
 

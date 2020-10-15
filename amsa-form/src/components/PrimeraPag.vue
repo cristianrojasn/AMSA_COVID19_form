@@ -17,31 +17,31 @@
                     <md-card-content>
                         <md-field>
                             <label for="nombre">Nombre</label>
-                            <md-input name="nombre" id="nombre"  autocomplete="given-name" v-model="nombreSol"/>
+                            <md-input @input="updateNombreSol" name="nombre" id="nombre"  autocomplete="given-name" v-model="nombreSol"/>
                         </md-field>
                         <!-- Apellido -->
                         <md-field>
                             <label for="apellido">Apellido</label>
-                            <md-input name="apellido" id="apellido"  autocomplete="given-name" v-model="apellidoSol"/>
+                            <md-input @input="updateApellidoSol" name="apellido" id="apellido"  autocomplete="given-name" v-model="apellidoSol"/>
                         </md-field>
                         <!-- RUT -->
                             <md-field>
                             <label for="rut">RUT</label>
-                            <md-input name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
+                            <md-input @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
                         </md-field>
                         <!-- Fecha de nacimiento -->
-                        <md-datepicker v-model="cumple">
+                        <md-datepicker @input="updateCumple" v-model="cumple">
                         <label>Fecha de nacimiento</label>
                         </md-datepicker>
                         <!-- Número de convivientes -->
                         <md-field>
                         <label>Número de convivientes</label>
-                        <md-input v-model="conv" type="number"></md-input>
+                        <md-input @input="updateConvivientes" v-model="conv" type="number"></md-input>
                         </md-field>
                         <!-- Previsión -->
                         <md-field>
                             <label for="prevision">Previsión</label>
-                            <md-select name="prevision" id="prevision" v-model="prevision" md-dense>
+                            <md-select @input="updatePrevision" name="prevision" id="prevision" v-model="prevision" md-dense>
                                 <md-option v-for="prev of previsiones" :key="prev" :value="prev">
                                     {{ prev }}
                                 </md-option>
@@ -52,7 +52,7 @@
                             <md-icon class="fa fa-location-arrow md-size-1x"></md-icon>
                             <span>Región</span>
                             </label>
-                            <md-select name="region" id="region" v-model="reg">
+                            <md-select @input="updateRegion" name="region" id="region" v-model="reg">
                             <md-option
                                 v-for="(regi,index) of Object.keys(comunas)"
                                 :key="regi"
@@ -75,6 +75,7 @@
                             for="comuna"
                             >Comuna</label>
                             <md-select
+                            @input="updateComuna"
                             v-else
                             name="comuna"
                             id="comuna"
@@ -107,22 +108,22 @@
                         <md-field>
                             <label for="numeroTel">Número de teléfono</label>
                             <span class="md-prefix">+569</span>
-                            <md-input type="tel" name="numeroTel" id="numeroTel"  autocomplete="given-name" v-model="numeroTel"/>
+                            <md-input @input="updateNumeroTel" type="tel" name="numeroTel" id="numeroTel"  autocomplete="given-name" v-model="numeroTel"/>
                         </md-field>
                     <!---------- Seccion Correo personal--------->
                         <md-field>
                             <label for="correo">Correo</label>
-                            <md-input type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
+                            <md-input @input="updateCorreo" type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
                         </md-field>    
                 <!---------- Seccion Correo supervisor --------->
                         <md-field>
                             <label for="correo_sup">Correo supervisor</label>
-                            <md-input type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
+                            <md-input @input="updateCorreoResp" type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
                         </md-field>
                 <!---------- Seccion Cargos --------->        
                         <md-field>
                             <label for="puestos">Cargo</label>
-                            <md-select name="puestos" id="puestos" v-model="car" md-dense>
+                            <md-select @input="updateCargo" name="puestos" id="puestos" v-model="car" md-dense>
                                 <md-option v-for="cargo of cargos" :key="cargo" :value="cargo">
                                     {{ cargo }}
                                 </md-option>
@@ -131,7 +132,7 @@
                 <!---------- Seccion turno ---------->
                         <md-field>
                             <label for="turno">Turno</label>
-                            <md-select name="turno" id="turno" v-model="turn" md-dense>
+                            <md-select @input="updateTurno" name="turno" id="turno" v-model="turn" md-dense>
                                 <md-option v-for="tu of turnos" :key="tu" :value="tu">
                                     {{ tu }}
                                 </md-option>
@@ -140,18 +141,18 @@
                 <!---------- Seccion Piso ---------->        
                         <md-field>
                             <label for="area">Piso de destino</label>
-                            <md-select name="area" id="area" v-model="area" md-dense>
+                            <md-select @input="updateArea" name="area" id="area" v-model="area" md-dense>
                                 <md-option v-for="ar of areas" :key="ar" :value="ar">
                                     {{ ar }}
                                 </md-option>
                             </md-select>
                         </md-field>
                 <!---------- Seccion VP---------->        
-                        <md-autocomplete name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
+                        <md-autocomplete @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
                         <label>Vicepresidencia</label>
                         </md-autocomplete>
                 <!---------- Seccion empresa---------->        
-                        <md-autocomplete name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
+                        <md-autocomplete @input="updateEmpresa" name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
                         <label>Empresa</label>
                         </md-autocomplete>                                                 
                     </md-card-content>
@@ -178,22 +179,84 @@ export default {
             rut: null,
             nombreSol: null,
             apellidoSol: null,
-            correoSol: null,
             numeroTel: null,
             cumple: null,
             conv: null,
             prevision: null,
             reg:null,
             com:null,
+            correo: null,
             correoSup:null,
             car:null,
             turn:null,
-            correo:null,
             area:null,
             empresa:null,
             vicepresidencia:null,    
         }
-    },    
+    },
+    
+    methods: {
+        //Emitir datos al componente padre
+        updateRut(){
+            this.$emit('updateData', {data: this.rut, campo: "rut"})
+        },
+        updateNombreSol(){
+            this.$emit('updateData', {data: this.nombreSol, campo:"nombreSol"})
+        },
+        updateApellidoSol(){
+            this.$emit('updateData', {data: this.apellidoSol, campo: "apellidoSol"})
+        },
+        updateNumeroTel(){
+            this.$emit('updateData', {data: this.numeroTel, campo: "numeroTel"})
+        },
+        updateCumple(){
+            this.$emit('updateData', {data: this.cumple, campo: "cumple"})
+        },
+        updateConvivientes(){
+            this.$emit('updateData', {data: this.conv, campo: "conv"})
+        },
+        updatePrevision(){
+            this.$emit('updateData', {data: this.prevision, campo: "prevision"})
+        },
+        updateRegion(){
+            this.$emit('updateData', {data: this.reg, campo: "reg"})
+        },
+        updateComuna(){
+            this.$emit('updateData', {data: this.com, campo: "com"})
+        },
+        updateCorreo(){
+            this.$emit('updateData', {data: this.correo, campo: "correo"})
+        },
+        updateCorreoResp(){
+            this.$emit('updateData', {data: this.correoSup, campo: "correoSup"})
+        },
+        updateCargo(){
+            this.$emit('updateData', {data: this.car, campo: "car"})
+        },
+        updateTurno(){
+            this.$emit('updateData', {data: this.turn, campo: "turn"})
+        },
+        updateArea(){
+            this.$emit('updateData', {data: this.area, campo: "area"})
+        },
+        updateEmpresa(){
+            this.$emit('updateData', {data: this.empresa, campo: "empresa"})
+        },
+        updateVicepresidencia(){
+            this.$emit('updateData', {data: this.vicepresidencia, campo: "vicepresidencia"})
+        },
+
+        /* //Actualizar nombre de empresa dinámicamente
+        actualizarEmpresaArea(value){
+            if(value.campo == "empresa"){
+                this.empresa = value.data
+                this.$emit('updateData', {data: this.empresa, campo: "empresa"})
+            }else if(value.campo == "area"){
+                this.area = value.data
+                this.$emit('updateData', {data: this.area, campo: "area"})
+            }
+        }*/
+    },
 }
 </script>
 
