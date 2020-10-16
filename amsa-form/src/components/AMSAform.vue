@@ -139,6 +139,14 @@
 <script>
 import DatosPersonales from '../components/PrimeraPag.vue';
 import Selpreexistencias from '../components/preexistencias.vue';
+import Firebase from 'firebase';
+import apiFire from '../config';
+import { required } from 'vuelidate/lib/validators'
+
+// Inicializamos la interacción con el servicio de firebase realtime daa base
+let app = Firebase.initializeApp(apiFire); // se debe inicializar con las credenciales
+let db = app.database();
+let resgisterRef = db.ref('registers');
 
 export default {
     name: 'AMSAform',
@@ -176,16 +184,76 @@ export default {
     },
     methods: {
       update(value){
-        this[value.campo] = value.data
+        this.form[value.campo] = value.data
       },
       sendDataFirebase(){
-
+        let newRef = resgisterRef.push();
+        this.$set(this.form, 'timestamp', this.getNow())
+        newRef.set(this.form);
       },
+      getNow: function () {
+      const today = new Date();
+      const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date + ' ' + time;
+      return dateTime
+    },
+
       validateUser(){
         console.log('Datos enviados')
         this.sendDataFirebase()
       }
-    }
+    },
+    firebase: {
+    registers: resgisterRef,
+  },
+  validations: {
+    rut: {
+      required
+    },
+    nombreSol: {
+      required
+    },
+    apellidoSol: {
+      required
+    },
+    numeroTel: {
+      required
+    },
+    conv: {
+      required
+    },
+    prevision: {
+      required
+    },
+    reg: {
+      required
+    },
+    com: {
+      required
+    },
+    correo: {
+      required
+    },
+    correoSup: {
+      required
+    },
+    car: {
+      required
+    },
+    turn: {
+      required
+    },
+    area: {
+      required
+    },
+    empresa: {
+      required
+    },
+    vicepresidencia: {
+      required
+    },
+  },
 }
 </script>
 
