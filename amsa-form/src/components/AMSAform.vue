@@ -266,7 +266,6 @@ table {
   }
   #titulo-foro {
     text-align: center;
-    overflow-wrap: break-word;
   }
 }
 </style>
