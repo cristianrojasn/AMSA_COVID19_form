@@ -18,7 +18,7 @@ const ArrSintomas = ['Fiebre : esto es temperatura corporal de 37.8 °C o algún
 
 const ArrCasos = ['Yo y/o alguna de las personas que convivo SI estamos diagnosticados como casos confirmados de Covid.19','Yo y/o alguna de las personas que convivo nos hemos realizado un examen PCR para determinar presencia de Covid-19 y los resultados se encuentran pendientes','Ni yo ni alguna persona con las que convivo hemos sido diagnosticados en los últimos 14 días como casos confirmados covid-19 o estamos a la espera de resultados de PCR']
 
-const ArrViajes = ['SI he viajado al extranjero en los últimos 15 días pero no completé la cuarentena obligatoria de 14 días señalada por la normativa vigente','Si he viajado al extranjero en los últimos 15 días y completé la cuarentena de 14 días','NO CUMPLO con ninguna de las situaciones indicadas']
+const ArrViajes = [{dato: `SI he viajado al extranjero en los últimos 15 días pero no completé la cuarentena obligatoria de 14 días señalada por la normativa vigente`, estilo: "padding-bottom: 70px"},{dato: 'Si he viajado al extranjero en los últimos 15 días y completé la cuarentena de 14 días', estilo: "padding-bottom: 40px"},{dato: 'NO CUMPLO con ninguna de las situaciones indicadas', estilo: ""}]
 
 export{
     empresas,
