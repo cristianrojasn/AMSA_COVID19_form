@@ -3,7 +3,7 @@
     <div class="personal-form" style="width:100%; margin-top:2rem; margin-bottom: 2rem;">
 
       <!--Se debe incluir todos los inputs del form dentro del tag form-->
-      <form novalidate class="md-layout" md-large-size-100>
+      <form novalidate class="md-layout" md-large-size-100 @submit.prevent="validateUser">
 
         <!--Todo el contenido está dentro del tag md-card-->
         <md-card class="md-layout-item md-size-100 md-small-size-100 formulario">
@@ -39,7 +39,7 @@
             
             <!--Inicio del contenido del form. Debe estar contenido en md-card-content-->
             <md-card-content>
-              <DatosPersonales/>
+              <DatosPersonales @updateData="update"/>
             </md-card-content>
             <md-divider></md-divider>
             <md-card-header>
@@ -71,7 +71,7 @@
             </md-card-header>
             <!--Inicio del contenido de COVID-->
             <md-card-content>
-              <Selpreexistencias/>
+              <Selpreexistencias @updateData="update"/>
             </md-card-content>
             <md-divider></md-divider>
             <md-card-header>
@@ -146,10 +146,45 @@ export default {
       DatosPersonales,
       Selpreexistencias,
     },
+    data(){
+      return {
+        form: {
+          rut: null,
+          nombreSol: null,
+          apellidoSol: null,
+          numeroTel: null,
+          cumple: null,
+          conv: null,
+          prevision: null,
+          reg:null,
+          com:null,
+          correo: null,
+          correoSup:null,
+          car:null,
+          turn:null,
+          area:null,
+          empresa:null,
+          vicepresidencia:null,
+          preex:{},
+          sintomas:{},
+          casos:{},
+          viajes:{},
+          radio:null,
+          salud:null
+        }
+      }
+    },
     methods: {
       update(value){
         this[value.campo] = value.data
       },
+      sendDataFirebase(){
+
+      },
+      validateUser(){
+        console.log('Datos enviados')
+        this.sendDataFirebase()
+      }
     }
 }
 </script>

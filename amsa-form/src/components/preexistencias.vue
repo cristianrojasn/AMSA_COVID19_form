@@ -219,7 +219,7 @@ export default {
         }
         */
         updatePreexistencias(){
-            this.$emit('updateData', {data: this.ArrPreex, campo: "ArrPreex"})
+            this.$emit('updateData', {data: this.preex, campo: "preex"})
         },
         updateSintomas(){
             this.$emit('updateData', {data: this.sintomas, campo: "sintomas"})
