@@ -65,7 +65,7 @@
                             </md-select>
                             <!-- <span
                             class="md-error"
-                            v-if="!$v.form.gerencia.required"
+                            v-if="!$v.form.reg.required"
                             >Se requiere que ingrese la región</span>
                             <span
                             class="md-error"

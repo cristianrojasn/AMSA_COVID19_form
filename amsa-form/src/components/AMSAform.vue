@@ -19,7 +19,7 @@
                       id="titulo-foro"
                       class="md-display-2"
                       >
-                      <b>AMSA</b> Autoevaluación COVID19
+                      <b>AMSA</b> Evaluación COVID19
                     </h2>
                   </b-col>
                   <b-col md="auto">
@@ -58,11 +58,12 @@
                 <!-- Decripción -->
                 <b-row class="md-display-4">
                   <b-col>
-                    <h4 id="titulo-seccion4" class="md-body-2">
-                      <ul>
-                        <li>SI TIENE alguna o varias ENFERMEDAD(ES) CRÓNICA(S) usted <b>debe comunicarse con su jefatura</b> para recibir instrucciones.</li>
-                        <li>Si usted es comunicado durante su jornada laboral que algún familiar o alguna de las personas con las que usted convive o que en su vuelo o medio de traslado al trabajo <b>presentó casos positivos</b> Covid-19 DEBE DAR <b>AVISO INMEDIATO a su supervisor</b>.</li>
-                      </ul>                       
+                    <h4 id="titulo-seccion4" class="md-subheading">
+                      <p>
+                      SI TIENE alguna o varias ENFERMEDAD(ES) CRÓNICA(S) usted <b>debe comunicarse con su jefatura</b> para recibir instrucciones.
+                      <br>
+                      Si usted es comunicado durante su jornada laboral que algún familiar o alguna de las personas con las que usted convive o que en su vuelo o medio de traslado al trabajo <b>presentó casos positivos</b> Covid-19 DEBE DAR <b>AVISO INMEDIATO a su supervisor</b>.                     
+                      </p>
                     </h4>
                   </b-col>
                 </b-row>                
@@ -99,20 +100,24 @@
                 </b-row>
                 <b-row class="md-display-4">
                   <b-col>
-                    <h3 id="titulo-final" class="md-subheading">
+                    <!-- <h3 id="titulo-final" class="md-subheading">
                     Prohibiciones de ingreso al lugar de trabajo por cuarentenas                      
-                    </h3>
+                    </h3> -->
                   </b-col>
                 </b-row>
                 <b-row>
                   <b-col>    
-                    <h4 id="titulo-seccion3" class="md-body-2">
-                      <ul>
+                    <h4 id="titulo-seccion3" class="md-subheading">
+                      <p>
+                        <br>
                         Si usted se encuentra en cualquiera de las siguientes situaciones, tenga presente que <b>no puede ingresar a su lugar de trabajo (faena u oficinas)</b>:
-                        <li>Residir en una comuna con <b>cuarentena</b> y <b>no contar con permiso</b> de la Autoridad para trasladarse desde su comuna de residencia hacia su lugar de trabajo y viceversa.</li>
-                        <li>Ser usted un <b>“caso confirmado con Covid-19”, un “caso probable”, un “contacto estrecho” o un “caso sospechoso”</b> y <b>no haber completado la cuarentena de 14 días</b> que es obligatoria en todos estos casos según la normativa vigente.</li>
-                        <p>Esta prohibición de ingreso, relacionada con cuarentenas dispuestas por la Autoridad, es sin perjuicio de aquellas cuarentenas que pudieren afectarle por disposición de la Empresa, en cuyo caso tampoco podrá ingresar a su lugar de trabajo, mientras no se complete el cumplimiento de la medida.</p>
-                      </ul>                       
+                        <br><br>
+                        1. Residir en una comuna con <b>cuarentena</b> y <b>no contar con permiso</b> de la Autoridad para trasladarse desde su comuna de residencia hacia su lugar de trabajo y viceversa.
+                      <br>    
+                      2. Ser usted un <b>“caso confirmado con Covid-19”, un “caso probable”, un “contacto estrecho” o un “caso sospechoso”</b> y <b>no haber completado la cuarentena de 14 días</b> que es obligatoria en todos estos casos según la normativa vigente.
+                      <br><br>
+                      Esta prohibición de ingreso, relacionada con cuarentenas dispuestas por la Autoridad, es sin perjuicio de aquellas cuarentenas que pudieren afectarle por disposición de la Empresa, en cuyo caso tampoco podrá ingresar a su lugar de trabajo, mientras no se complete el cumplimiento de la medida.
+                      </p>                    
                     </h4>                    
                   </b-col>
                 </b-row>                
