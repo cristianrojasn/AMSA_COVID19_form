@@ -45,7 +45,7 @@
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
                                 <tr v-for="(itemes,indice) of ArrSintomas" :key="itemes">
-                                    <td>
+                                    <td style="">
                                         <md-checkbox @input="updateSintomas" v-model="sintomas[indice]" :value="itemes">{{ itemes }}</md-checkbox>
                                     </td>
                                 </tr>
@@ -73,7 +73,7 @@
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
                                 <tr v-for="(iteracion,indice) of ArrCasos" :key="iteracion">
-                                    <td>
+                                    <td style="padding-bottom: 70px;">
                                         <md-checkbox @input="updateCasos" v-model="casos[indice]" :value="iteracion">{{ iteracion }}</md-checkbox>
                                     </td>
                                 </tr>
@@ -83,7 +83,7 @@
                 </md-card>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row class="row-length">
             <!-------------------------VIAJES----------------------------->
             <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
@@ -101,31 +101,33 @@
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
                                 <tr v-for="(items,indice) of ArrViajes" :key="items">
-                                    <td>
-                                        <md-checkbox @input="updateViajes" v-model="viajes[indice]" :value="items">{{ items }}</md-checkbox>
+                                    <td :style="items.estilo">
+                                        <md-checkbox @input="updateViajes" v-model="viajes[indice]" :value="items.dato">
+                                        <span>{{ items.dato }}</span>
+                                        </md-checkbox>
                                     </td>
                                 </tr>
                             </table>
-                        </div>    
+                        </div>
                     </md-card-content>    
                 </md-card>
             </b-col>    
         </b-row> 
         <b-row class="md-display-4">
-                  <b-col>
-                    <h4 id="titulo-seccion4" class="md-body-2">
-                      <b>En relación a la siguiente pregunta, se entiende por contacto estrecho:</b>  
-                      <ul>
+            <b-col>
+                <h4 id="titulo-seccion4" class="md-body-2">
+                    <b>En relación a la siguiente pregunta, se entiende por contacto estrecho:</b>  
+                    <ul>
                         <li>Haber mantenido más de 15 minutos de contacto cara a cara, a menos de un metro.</li>
                         <li>Haber compartido un espacio cerrado por 2 horas o más, en lugares tales como oficinas, trabajos, reuniones, colegios, entre otros.</li>
                         <li>Vivir o pernoctar en el mismo hogar o lugares similares a hogar, tales como, hostales, internados, instituciones cerradas, hogares de ancianos, hoteles, residencias, entre otros.</li>
                         <li>Haberse trasladado en cualquier medio de transporte cerrado a una proximidad menor de un metro con otro ocupante del medio de transporte que esté contagiado.</li>
-                      </ul>                       
-                    </h4>
-                  </b-col>
+                    </ul>                       
+                </h4>
+            </b-col>
         </b-row>
-        <b-row>
-             <!-------------------------CONTACTO COVID----------------------------->
+        <b-row class="row-length">
+            <!-------------------------CONTACTO COVID----------------------------->
             <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="6"/>
@@ -157,8 +159,8 @@
                 </md-card>
             </b-col>
         </b-row>
-        <b-row>
-             <!-------------------------Profesionales de la salud----------------------------->
+        <b-row class="row-length">
+            <!-------------------------Profesionales de la salud----------------------------->
             <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
                     <md-badge id="badge-steps" md-content="7"/>
@@ -166,7 +168,7 @@
                         <div class="md-title">
                             <md-icon class="fa fa-hospital-o md-size-2x"></md-icon>
                             <span style="margin-left: 18px">¿Alguna de las personas con las que convive, trabaja o ha visitado 
-                           trabaja en alguna entidad que maneje pacientes Covid-19?</span>
+                            trabaja en alguna entidad que maneje pacientes Covid-19?</span>
                             <p class="md-caption">
                             Hospitales, centros de salud, residencias sanitarias o que maneje muestras de laboratorio 
                             para procesar exámenes de diagnóstico para Covid-19 (laboratorios, clínicas, 
@@ -266,14 +268,26 @@ export default {
     margin: 0 auto;
 }
 .row-length {
-    width: 80%
+    width: 100%
 }
 
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-selector{
+    max-width: 800px;
+}
+
+tr, td {
+    height: auto;
+}
 .centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 95%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
 }
 
 @media screen and (max-width: 800px){

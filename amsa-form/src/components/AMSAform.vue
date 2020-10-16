@@ -19,7 +19,7 @@
                       id="titulo-foro"
                       class="md-display-2"
                       >
-                      <b>AMSA</b> Autoevaluación COVID19
+                      <b>AMSA</b> Evaluación COVID19
                     </h2>
                   </b-col>
                   <b-col md="auto">
@@ -261,6 +261,7 @@ table {
   }
   #titulo-foro {
     text-align: center;
+    overflow-wrap: break-word;
   }
 }
 </style>
