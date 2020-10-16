@@ -114,13 +114,16 @@
         <b-row class="md-display-4">
                   <b-col>
                     <h4 id="titulo-seccion4" class="md-body-2">
-                      <b>En relación a la siguiente pregunta, se entiende por contacto estrecho:</b>  
-                      <ul>
-                        <li>Haber mantenido más de 15 minutos de contacto cara a cara, a menos de un metro.</li>
-                        <li>Haber compartido un espacio cerrado por 2 horas o más, en lugares tales como oficinas, trabajos, reuniones, colegios, entre otros.</li>
-                        <li>Vivir o pernoctar en el mismo hogar o lugares similares a hogar, tales como, hostales, internados, instituciones cerradas, hogares de ancianos, hoteles, residencias, entre otros.</li>
-                        <li>Haberse trasladado en cualquier medio de transporte cerrado a una proximidad menor de un metro con otro ocupante del medio de transporte que esté contagiado.</li>
-                      </ul>                       
+                        <p>
+                      <b>En relación a la siguiente pregunta, se entiende por contacto estrecho:</b><br>  
+                        1. Haber mantenido más de 15 minutos de contacto cara a cara, a menos de un metro.
+                        <br>
+                        2. Haber compartido un espacio cerrado por 2 horas o más, en lugares tales como oficinas, trabajos, reuniones, colegios, entre otros.
+                        <br>
+                        3. Vivir o pernoctar en el mismo hogar o lugares similares a hogar, tales como, hostales, internados, instituciones cerradas, hogares de ancianos, hoteles, residencias, entre otros.
+                        <br>
+                        4. Haberse trasladado en cualquier medio de transporte cerrado a una proximidad menor de un metro con otro ocupante del medio de transporte que esté contagiado.                                            
+                        </p>  
                     </h4>
                   </b-col>
         </b-row>
