@@ -15,7 +15,7 @@
                         </p>
                     </md-card-header>
                     <md-card-content>
-                        <md-field>
+                        <md-field :class="getValidationClass('nombreSol')">
                             <label for="nombre">Nombre</label>
                             <md-input @input="updateNombreSol" name="nombre" id="nombre"  autocomplete="given-name" v-model="nombreSol"/>
                             <span
@@ -24,34 +24,60 @@
                             >Se requiere que ingrese su nombre</span>
                         </md-field>
                         <!-- Apellido -->
-                        <md-field>
+                        <md-field :class="getValidationClass('apellidoSol')">
                             <label for="apellido">Apellido</label>
                             <md-input @input="updateApellidoSol" name="apellido" id="apellido"  autocomplete="given-name" v-model="apellidoSol"/>
+                            <span
+                            class="md-error"
+                            v-if="!$v.apellidoSol.required"
+                            >Se requiere que ingrese su apellido</span>
                         </md-field>
+                        
                         <!-- RUT -->
-                            <md-field>
+                            <md-field :class="getValidationClass('rut')">
                             <label for="rut">RUT</label>
                             <md-input @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
+                            <span
+                            class="md-error"
+                            v-if="!$v.rut.required"
+                            >Se requiere que ingrese su rut</span>
+                            <span
+                            class="md-error"
+                            v-if="!$v.rut.minLength || !$v.rut.maxLength"
+                            >El número de dígitos del rut no es válido</span>
                         </md-field>
+                        
                         <!-- Fecha de nacimiento -->
-                        <md-datepicker @input="updateCumple" v-model="cumple">
+                        <md-datepicker :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple">
                         <label>Fecha de nacimiento</label>
+                        <span
+                            class="md-error"
+                            v-if="!$v.cumple.required"
+                            >Ingrese su fecha de nacimiento</span>
                         </md-datepicker>
                         <!-- Número de convivientes -->
-                        <md-field>
+                        <md-field :class="getValidationClass('conv')">
                         <label>Número de convivientes</label>
                         <md-input @input="updateConvivientes" v-model="conv" type="number"></md-input>
+                        <span
+                            class="md-error"
+                            v-if="!$v.conv.required"
+                            >Se requiere que ingrese el N° de convivientes</span>
                         </md-field>
                         <!-- Previsión -->
-                        <md-field>
+                        <md-field :class="getValidationClass('prevision')">
                             <label for="prevision">Previsión</label>
                             <md-select @input="updatePrevision" name="prevision" id="prevision" v-model="prevision" md-dense>
                                 <md-option v-for="prev of previsiones" :key="prev" :value="prev">
                                     {{ prev }}
                                 </md-option>
                             </md-select>
+                            <span
+                            class="md-error"
+                            v-if="!$v.prevision.required"
+                            >Se requiere que ingrese su previsión</span>
                         </md-field>    
-                        <md-field>
+                        <md-field :class="getValidationClass('reg')">
                             <label>
                             <md-icon class="fa fa-location-arrow md-size-1x"></md-icon>
                             <span>Región</span>
@@ -63,16 +89,16 @@
                                 :value="Object.keys(comunas)[index]"
                             >{{ regi }}</md-option>
                             </md-select>
-                            <!-- <span
-                            class="md-error"
-                            v-if="!$v.form.reg.required"
-                            >Se requiere que ingrese la región</span>
                             <span
+                            class="md-error"
+                            v-if="!$v.reg.required"
+                            >Se requiere que ingrese la región</span>
+                            <!-- <span
                             class="md-error"
                             v-else-if="!$v.form.gerencia.minlength"
                             >El dato ingresado no cumple con el largo mínimo</span> -->
                         </md-field>
-                        <md-field>
+                        <md-field :class="getValidationClass('com')">
                             <label for="comuna">Comuna</label>
                             <label
                             v-if="reg === null"
@@ -90,7 +116,11 @@
                                 :key="comu"
                                 :value="comu"
                             >{{ comu }}</md-option>
-                            </md-select> 
+                            </md-select>
+                            <span
+                            class="md-error"
+                            v-if="!$v.com.required"
+                            >Se requiere que ingrese la comuna</span> 
                         </md-field>
                     </md-card-content>
                 </md-card>
@@ -108,56 +138,100 @@
                         </div>
                     </md-card-header>
                     <md-card-content>
-                    <!---------- Seccion Nimero telefono--------->
-                        <md-field>
+                    <!---------- Seccion Número telefono--------->
+                        <md-field :class="getValidationClass('numeroTel')">
                             <label for="numeroTel">Número de teléfono</label>
                             <span class="md-prefix">+569</span>
                             <md-input @input="updateNumeroTel" type="tel" name="numeroTel" id="numeroTel"  autocomplete="given-name" v-model="numeroTel"/>
+                            <span
+                            class="md-error"
+                            v-if="!$v.numeroTel.required"
+                            >Se requiere que ingrese su número de teléfono</span>
+                            <span
+                            class="md-error"
+                            v-if="!$v.numeroTel.minLength || !$v.numeroTel.maxLength"
+                            >El número de teléfono no es válido</span>
                         </md-field>
                     <!---------- Seccion Correo personal--------->
-                        <md-field>
+                        <md-field :class="getValidationClass('correo')">
                             <label for="correo">Correo</label>
                             <md-input @input="updateCorreo" type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
+                            <span
+                            class="md-error"
+                            v-if="!$v.correo.required"
+                            >Se requiere que ingrese su correo</span>
+                            <span
+                            class="md-error"
+                            v-if="!$v.correo.email"
+                            >Se requiere que ingrese un correo válido</span>
                         </md-field>    
                 <!---------- Seccion Correo supervisor --------->
-                        <md-field>
+                        <md-field :class="getValidationClass('correoSup')">
                             <label for="correo_sup">Correo supervisor</label>
                             <md-input @input="updateCorreoResp" type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
+                            <span
+                            class="md-error"
+                            v-if="!$v.correoSup.required"
+                            >Se requiere que ingrese su correo</span>
+                            <span
+                            class="md-error"
+                            v-if="!$v.correoSup.email"
+                            >Se requiere que ingrese un correo válido</span>
                         </md-field>
                 <!---------- Seccion Cargos --------->        
-                        <md-field>
+                        <md-field :class="getValidationClass('car')">
                             <label for="puestos">Cargo</label>
                             <md-select @input="updateCargo" name="puestos" id="puestos" v-model="car" md-dense>
                                 <md-option v-for="cargo of cargos" :key="cargo" :value="cargo">
                                     {{ cargo }}
                                 </md-option>
                             </md-select>
+                            <span
+                            class="md-error"
+                            v-if="!$v.car.required"
+                            >Se requiere que ingrese su cargo</span>
                         </md-field>
                 <!---------- Seccion turno ---------->
-                        <md-field>
+                        <md-field :class="getValidationClass('turn')">
                             <label for="turno">Turno</label>
                             <md-select @input="updateTurno" name="turno" id="turno" v-model="turn" md-dense>
                                 <md-option v-for="tu of turnos" :key="tu" :value="tu">
                                     {{ tu }}
                                 </md-option>
                             </md-select>
+                            <span
+                            class="md-error"
+                            v-if="!$v.turn.required"
+                            >Se requiere que ingrese su turno</span>
                         </md-field>
                 <!---------- Seccion Piso ---------->        
-                        <md-field>
+                        <md-field :class="getValidationClass('area')">
                             <label for="area">Piso de destino</label>
                             <md-select @input="updateArea" name="area" id="area" v-model="area" md-dense>
                                 <md-option v-for="ar of areas" :key="ar" :value="ar">
                                     {{ ar }}
                                 </md-option>
                             </md-select>
+                            <span
+                            class="md-error"
+                            v-if="!$v.area.required"
+                            >Se requiere que ingrese su area</span>
                         </md-field>
                 <!---------- Seccion VP---------->        
-                        <md-autocomplete @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
+                        <md-autocomplete :class="getValidationClass('vicepresidencia')" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
                         <label>Vicepresidencia</label>
+                        <span
+                            class="md-error"
+                            v-if="!$v.area.required"
+                            >Se requiere que ingrese una vicepresidencia</span>
                         </md-autocomplete>
-                <!---------- Seccion empresa---------->        
-                        <md-autocomplete @input="updateEmpresa" name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
+                <!---------- Seccion empresa---------->       
+                        <md-autocomplete :class="getValidationClass('empresa')" @input="updateEmpresa" name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
                         <label>Empresa</label>
+                        <span
+                            class="md-error"
+                            v-if="!$v.area.required"
+                            >Se requiere que ingrese una vicepresidencia</span>
                         </md-autocomplete>                                                 
                     </md-card-content>
                 </md-card>
@@ -167,11 +241,13 @@
 </template>
 
 <script>
+//import { validationMixin } from 'vuelidate'
 import {cargos,turnos,areas,empresas,vicepresidencias,previsiones,comunas} from '../variables.js'
-
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {
     name: "DatosPersonales",
+    //mixins: [validationMixin],
     data() {
         return {
             cargos,
@@ -250,7 +326,20 @@ export default {
         updateVicepresidencia(){
             this.$emit('updateData', {data: this.vicepresidencia, campo: "vicepresidencia"})
         },
-
+        getValidationClass (fieldName) {
+        const field = this.$v[fieldName]
+        if (field) {
+            return {
+                'md-invalid': field.$invalid && field.$dirty
+                }
+            }
+        },
+        validar(){
+            this.$v.$touch()
+        },
+        ifVal(){
+            return this.$v.$invalid
+        }
         /* //Actualizar nombre de empresa dinámicamente
         actualizarEmpresaArea(value){
             if(value.campo == "empresa"){
@@ -261,7 +350,63 @@ export default {
                 this.$emit('updateData', {data: this.area, campo: "area"})
             }
         }*/
-    },    
+    }, 
+    validations: {
+        rut: {
+            required,
+            minLength: minLength(8),
+            maxLength: maxLength(9)
+        },
+        nombreSol: {
+            required
+        },
+        apellidoSol: {
+            required
+        },
+        numeroTel: {
+            required,
+            minLength: minLength(8),
+            maxLength: maxLength(8)
+        },
+        conv: {
+            required
+        },
+        cumple: {
+            required
+        },
+        prevision: {
+            required
+        },
+        reg: {
+            required
+        },
+        com: {
+            required
+        },
+        correo: {
+            required,
+            email
+        },
+        correoSup: {
+            required,
+            email
+        },
+        car: {
+            required
+        },
+        turn: {
+            required
+        },
+        area: {
+            required
+        },
+        empresa: {
+            required
+        },
+        vicepresidencia: {
+            required
+        },
+    },   
 }
 </script>
 
@@ -295,8 +440,13 @@ export default {
     margin: 0 auto;
 }
 .row-length {
-    width: 80%
+    width: 100%
 }
+
+/* #datePicker svg {
+    fill: var(--md-theme-default-icon-on-background, rgba(252, 11, 11, 0.54)) !important;
+} */
+/*.md-icon.md-theme-default.md-icon-image svg*/
 @media screen and (max-width: 800px){
     .row-length {
     width: 100%;

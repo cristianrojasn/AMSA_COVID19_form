@@ -39,7 +39,7 @@
             
             <!--Inicio del contenido del form. Debe estar contenido en md-card-content-->
             <md-card-content>
-              <DatosPersonales @updateData="update"/>
+              <DatosPersonales ref="PrimeraPagina" @updateData="update"/>
             </md-card-content>
             <md-divider></md-divider>
             <md-card-header>
@@ -143,6 +143,7 @@ import Firebase from 'firebase';
 import apiFire from '../config';
 import { required } from 'vuelidate/lib/validators'
 
+
 // Inicializamos la interacción con el servicio de firebase realtime daa base
 let app = Firebase.initializeApp(apiFire); // se debe inicializar con las credenciales
 let db = app.database();
@@ -182,6 +183,53 @@ export default {
         }
       }
     },
+    validations: {
+        rut: {
+            required
+        },
+        nombreSol: {
+            required
+        },
+        apellidoSol: {
+            required
+        },
+        numeroTel: {
+            required
+        },
+        conv: {
+            required
+        },
+        prevision: {
+            required
+        },
+        reg: {
+            required
+        },
+        com: {
+            required
+        },
+        correo: {
+            required
+        },
+        correoSup: {
+            required
+        },
+        car: {
+            required
+        },
+        turn: {
+            required
+        },
+        area: {
+            required
+        },
+        empresa: {
+            required
+        },
+        vicepresidencia: {
+            required
+        },
+    },   
     methods: {
       update(value){
         this.form[value.campo] = value.data
@@ -200,60 +248,19 @@ export default {
     },
 
       validateUser(){
-        console.log('Datos enviados')
-        this.sendDataFirebase()
+        //this.$v.$touch()
+        this.$refs.PrimeraPagina.validar()
+        if (!this.$refs.PrimeraPagina.ifVal()) {
+          console.log('Datos enviados')
+          this.sendDataFirebase()
+        }
+        console.log('Hola')
       }
     },
     firebase: {
     registers: resgisterRef,
-  },
-  validations: {
-    rut: {
-      required
-    },
-    nombreSol: {
-      required
-    },
-    apellidoSol: {
-      required
-    },
-    numeroTel: {
-      required
-    },
-    conv: {
-      required
-    },
-    prevision: {
-      required
-    },
-    reg: {
-      required
-    },
-    com: {
-      required
-    },
-    correo: {
-      required
-    },
-    correoSup: {
-      required
-    },
-    car: {
-      required
-    },
-    turn: {
-      required
-    },
-    area: {
-      required
-    },
-    empresa: {
-      required
-    },
-    vicepresidencia: {
-      required
-    },
-  },
+  }
+  
 }
 </script>
 

@@ -28,7 +28,7 @@
                 </md-card>
             </b-col>
         </b-row>
-        <b-row>     
+        <b-row class="row-length">     
             <!----Sintomas COVID---->
             <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
@@ -100,7 +100,7 @@
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
-                                <tr v-for="(items,indice) of ArrViajes" :key="items">
+                                <tr v-for="(items,indice) of ArrViajes" :key="items.dato">
                                     <td :style="items.estilo">
                                         <md-checkbox @input="updateViajes" v-model="viajes[indice]" :value="items.dato">
                                         <span>{{ items.dato }}</span>
