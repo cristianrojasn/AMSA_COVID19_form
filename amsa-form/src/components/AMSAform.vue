@@ -71,7 +71,7 @@
             </md-card-header>
             <!--Inicio del contenido de COVID-->
             <md-card-content>
-              <Selpreexistencias @updateData="update"/>
+              <Selpreexistencias @updateDataPreex="updatePreex"/>
             </md-card-content>
             <md-divider></md-divider>
             <md-card-header>
@@ -141,13 +141,12 @@ import DatosPersonales from '../components/PrimeraPag.vue';
 import Selpreexistencias from '../components/preexistencias.vue';
 import Firebase from 'firebase';
 import apiFire from '../config';
-import { required } from 'vuelidate/lib/validators'
 
 
 // Inicializamos la interacción con el servicio de firebase realtime daa base
 let app = Firebase.initializeApp(apiFire); // se debe inicializar con las credenciales
 let db = app.database();
-let resgisterRef = db.ref('registers');
+let registerRef = db.ref('registers');
 
 export default {
     name: 'AMSAform',
@@ -176,66 +175,23 @@ export default {
           vicepresidencia:null,
           preex:{},
           sintomas:{},
-          casos:{},
-          viajes:{},
+          casos:null,
+          viajes:null,
           radio:null,
           salud:null
         }
       }
-    },
-    validations: {
-        rut: {
-            required
-        },
-        nombreSol: {
-            required
-        },
-        apellidoSol: {
-            required
-        },
-        numeroTel: {
-            required
-        },
-        conv: {
-            required
-        },
-        prevision: {
-            required
-        },
-        reg: {
-            required
-        },
-        com: {
-            required
-        },
-        correo: {
-            required
-        },
-        correoSup: {
-            required
-        },
-        car: {
-            required
-        },
-        turn: {
-            required
-        },
-        area: {
-            required
-        },
-        empresa: {
-            required
-        },
-        vicepresidencia: {
-            required
-        },
-    },   
+    },  
     methods: {
       update(value){
         this.form[value.campo] = value.data
       },
+      updatePreex(value){
+        console.log('Hola')
+        this.form[value.campo] = value.data
+      },
       sendDataFirebase(){
-        let newRef = resgisterRef.push();
+        let newRef = registerRef.push();
         this.$set(this.form, 'timestamp', this.getNow())
         newRef.set(this.form);
       },
@@ -254,11 +210,10 @@ export default {
           console.log('Datos enviados')
           this.sendDataFirebase()
         }
-        console.log('Hola')
       }
     },
     firebase: {
-    registers: resgisterRef,
+    registers: registerRef,
   }
   
 }

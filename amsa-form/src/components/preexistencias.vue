@@ -19,7 +19,7 @@
                             <table style="width:100%">
                                 <tr v-for="(opciones,indice) of ArrPreex" :key="opciones">
                                     <td>
-                                        <md-checkbox @input="updatePreexistencias" v-model="preex[indice]" :value="opciones">{{ opciones }}</md-checkbox>
+                                        <md-checkbox @change="updatePreexistencias" v-model="preex[indice]" :value="opciones">{{ opciones }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -46,7 +46,7 @@
                             <table style="width:100%">
                                 <tr v-for="(itemes,indice) of ArrSintomas" :key="itemes">
                                     <td style="">
-                                        <md-checkbox @input="updateSintomas" v-model="sintomas[indice]" :value="itemes">{{ itemes }}</md-checkbox>
+                                        <md-checkbox @change="updateSintomas" v-model="sintomas[indice]" :value="itemes">{{ itemes }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -72,9 +72,9 @@
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
-                                <tr v-for="(iteracion,indice) of ArrCasos" :key="iteracion">
+                                <tr v-for="(iteracion) of ArrCasos" :key="iteracion">
                                     <td style="padding-bottom: 70px;">
-                                        <md-checkbox @input="updateCasos" v-model="casos[indice]" :value="iteracion">{{ iteracion }}</md-checkbox>
+                                        <md-checkbox @change="updateCasos" v-model="casos" :value="iteracion">{{ iteracion }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
@@ -100,9 +100,9 @@
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
-                                <tr v-for="(items,indice) of ArrViajes" :key="items.dato">
+                                <tr v-for="(items) of ArrViajes" :key="items.dato">
                                     <td :style="items.estilo">
-                                        <md-checkbox @input="updateViajes" v-model="viajes[indice]" :value="items.dato">
+                                        <md-checkbox @change="updateViajes" v-model="viajes" :value="items.dato">
                                         <span>{{ items.dato }}</span>
                                         </md-checkbox>
                                     </td>
@@ -133,7 +133,7 @@
             <!-------------------------CONTACTO COVID----------------------------->
             <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="6"/>
+                    <md-badge id="badge-steps" md-content="7"/>
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-handshake-o md-size-2x"></md-icon>
@@ -155,8 +155,8 @@
                     </md-card-header>    
                     <md-card-content>
                         <div>
-                            <md-radio @input="updateContacto" v-model="radio" value="Si">Sí</md-radio>
-                            <md-radio @input="updateContacto" v-model="radio" value="No">No</md-radio>
+                            <md-radio @change="updateContacto" v-model="radio" value="Si">Sí</md-radio>
+                            <md-radio @change="updateContacto" v-model="radio" value="No">No</md-radio>
                         </div>
                     </md-card-content>    
                 </md-card>
@@ -166,7 +166,7 @@
             <!-------------------------Profesionales de la salud----------------------------->
             <b-col class="box-respuestas-1" cols="12" md="12">
                 <md-card class="md-layout-item box-respuestas-1">
-                    <md-badge id="badge-steps" md-content="7"/>
+                    <md-badge id="badge-steps" md-content="8"/>
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-hospital-o md-size-2x"></md-icon>
@@ -181,8 +181,8 @@
                     </md-card-header>    
                     <md-card-content>
                         <div>
-                            <md-radio @input="updateSalud" v-model="salud" value="Si2">Sí</md-radio>
-                            <md-radio @input="updateSalud" v-model="salud" value="No2">No</md-radio>
+                            <md-radio @change="updateSalud" v-model="salud" value="Si2">Sí</md-radio>
+                            <md-radio @change="updateSalud" v-model="salud" value="No2">No</md-radio>
                         </div>
                     </md-card-content>    
                 </md-card>
@@ -205,8 +205,8 @@ export default {
             ArrViajes,
             preex:{},
             sintomas:{},
-            casos:{},
-            viajes:{},
+            casos:null,
+            viajes:null,
             radio:null,
             salud:null,
         }
@@ -219,22 +219,22 @@ export default {
         }
         */
         updatePreexistencias(){
-            this.$emit('updateData', {data: this.preex, campo: "preex"})
+            this.$emit('updateDataPreex', {data: this.preex, campo: "preex"})
         },
         updateSintomas(){
-            this.$emit('updateData', {data: this.sintomas, campo: "sintomas"})
+            this.$emit('updateDataPreex', {data: this.sintomas, campo: "sintomas"})
         },
         updateCasos(){
-            this.$emit('updateData', {data: this.casos, campo: "casos"})
+            this.$emit('updateDataPreex', {data: this.casos, campo: "casos"})
         },
         updateViajes(){
-            this.$emit('updateData', {data: this.viajes, campo: "viajes"})
+            this.$emit('updateDataPreex', {data: this.viajes, campo: "viajes"})
         },
         updateContacto(){
-            this.$emit('updateData', {data: this.radio, campo: "radio"})
+            this.$emit('updateDataPreex', {data: this.radio, campo: "radio"})
         },
         updateSalud(){
-            this.$emit('updateData', {data: this.salud, campo: "salud"})
+            this.$emit('updateDataPreex', {data: this.salud, campo: "salud"})
         },
     },
 }
