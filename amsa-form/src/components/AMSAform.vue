@@ -71,7 +71,7 @@
             </md-card-header>
             <!--Inicio del contenido de COVID-->
             <md-card-content>
-              <Selpreexistencias @updateDataPreex="updatePreex"/>
+              <Selpreexistencias ref="seccionPreex" @updateDataPreex="updatePreex"/>
             </md-card-content>
             <md-divider></md-divider>
             <md-card-header>
@@ -173,8 +173,8 @@ export default {
           area:null,
           empresa:null,
           vicepresidencia:null,
-          preex:{},
-          sintomas:{},
+          preex:[],
+          sintomas:[],
           casos:null,
           viajes:null,
           radio:null,
@@ -187,7 +187,6 @@ export default {
         this.form[value.campo] = value.data
       },
       updatePreex(value){
-        console.log('Hola')
         this.form[value.campo] = value.data
       },
       sendDataFirebase(){
@@ -205,8 +204,9 @@ export default {
 
       validateUser(){
         //this.$v.$touch()
+        this.$refs.seccionPreex.validar()
         this.$refs.PrimeraPagina.validar()
-        if (!this.$refs.PrimeraPagina.ifVal()) {
+        if (!this.$refs.PrimeraPagina.ifVal() && !this.$refs.seccionPreex.ifVal()) {
           console.log('Datos enviados')
           this.sendDataFirebase()
         }

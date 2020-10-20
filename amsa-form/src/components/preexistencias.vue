@@ -17,13 +17,23 @@
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
-                                <tr v-for="(opciones,indice) of ArrPreex" :key="opciones">
+                                <tr v-for="(opciones) of ArrPreex" :key="opciones">
                                     <td>
-                                        <md-checkbox @change="updatePreexistencias" v-model="preex[indice]" :value="opciones">{{ opciones }}</md-checkbox>
+                                        <md-checkbox class="md-primary"  @change="preexistencias" v-model="preex" :value="opciones">{{ opciones }}</md-checkbox>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <md-checkbox class="md-primary" @change="noPreexistencias" v-model="noPreex" value="NO TENGO ninguna de las condiciones de salud indicadas">NO TENGO ninguna de las condiciones de salud indicadas</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
-                        </div>    
+                        </div>
+                        <span
+                            class="md-error"
+                            v-if="!$v.preexFinal.validarPreex"
+                            >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
             </b-col>
@@ -38,19 +48,30 @@
                             <md-icon class="fa fa-thermometer-full md-size-2x"></md-icon>
                             <span>Síntomas de COVID</span>
                             <p class="md-caption">
-                            ¿En las últimas 24 horas usted o alguna de las personas con las que convive ha tenido alguno de los siguientes síntomas? - <b>EN CASO QUE NO:</b> marque la última opción!</p>
+                            ¿En las últimas 24 horas usted o alguna de las personas con las que convive ha tenido alguno de los siguientes síntomas? - <strong>EN CASO QUE NO:</strong> marque la última opción!</p>
                         </div>
                     </md-card-header>    
                     <md-card-content>
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
-                                <tr v-for="(itemes,indice) of ArrSintomas" :key="itemes">
-                                    <td style="">
-                                        <md-checkbox @change="updateSintomas" v-model="sintomas[indice]" :value="itemes">{{ itemes }}</md-checkbox>
+                                <tr v-for="(itemes) of ArrSintomas" :key="itemes">
+                                    <td class="celdaSintomas">
+                                        <md-checkbox class="md-primary" @change="conSintomas" v-model="sintomas" :value="itemes">{{ itemes }}</md-checkbox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <md-checkbox class="md-primary" @change="sinSintomas" v-model="noSintomas" value="NO TENGO ninguno de los síntomas indicados">
+                                            NO TENGO ninguno de los síntomas indicados
+                                        </md-checkbox>
                                     </td>
                                 </tr>
                             </table>
-                        </div>    
+                        </div>
+                        <span
+                            class="md-error"
+                            v-if="!$v.sintomasFinal.validarSintomas"
+                            >Se requiere que seleccione una opción</span>    
                     </md-card-content>    
                 </md-card>
             </b-col>    
@@ -73,12 +94,16 @@
                         <div class="md-layout table-selector" style="display:flex; justify-content:center; margin: 0 auto;">
                             <table style="width:100%">
                                 <tr v-for="(iteracion) of ArrCasos" :key="iteracion">
-                                    <td style="padding-bottom: 70px;">
-                                        <md-checkbox @change="updateCasos" v-model="casos" :value="iteracion">{{ iteracion }}</md-checkbox>
+                                    <td class="celdaCasos">
+                                        <md-checkbox class="md-primary" @change="updateCasos" v-model="casos" :value="iteracion">{{ iteracion }}</md-checkbox>
                                     </td>
                                 </tr>
                             </table>
                         </div>    
+                            <span
+                            class="md-error"
+                            v-if="!$v.casos.required"
+                            >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
             </b-col>
@@ -93,7 +118,7 @@
                             <md-icon class="fa fa-plane md-size-2x"></md-icon>
                             <span>Viajes</span>
                             <p class="md-caption">
-                            Si no se identifica con alguno de los puntos, omita la pregunta - <b>EN CASO QUE NO</b>: marque la última opción!
+                            Si no se identifica con alguno de los puntos, omita la pregunta - <strong>EN CASO QUE NO</strong>: marque la última opción!
                             </p>
                         </div>
                     </md-card-header>    
@@ -102,13 +127,17 @@
                             <table style="width:100%">
                                 <tr v-for="(items) of ArrViajes" :key="items.dato">
                                     <td :style="items.estilo">
-                                        <md-checkbox @change="updateViajes" v-model="viajes" :value="items.dato">
+                                        <md-checkbox class="md-primary" @change="updateViajes" v-model="viajes" :value="items.dato">
                                         <span>{{ items.dato }}</span>
                                         </md-checkbox>
                                     </td>
                                 </tr>
                             </table>
                         </div>
+                            <span
+                            class="md-error"
+                            v-if="!$v.viajes.required && viajes == null"
+                            >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
             </b-col>    
@@ -158,6 +187,10 @@
                             <md-radio @change="updateContacto" v-model="radio" value="Si">Sí</md-radio>
                             <md-radio @change="updateContacto" v-model="radio" value="No">No</md-radio>
                         </div>
+                        <span
+                            class="md-error"
+                            v-if="!$v.radio.required"
+                            >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
             </b-col>
@@ -181,9 +214,13 @@
                     </md-card-header>    
                     <md-card-content>
                         <div>
-                            <md-radio @change="updateSalud" v-model="salud" value="Si2">Sí</md-radio>
-                            <md-radio @change="updateSalud" v-model="salud" value="No2">No</md-radio>
+                            <md-radio @change="updateSalud" v-model="salud" value="Si">Sí</md-radio>
+                            <md-radio @change="updateSalud" v-model="salud" value="No">No</md-radio>
                         </div>
+                        <span
+                            class="md-error"
+                            v-if="!$v.salud.required"
+                            >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
             </b-col>
@@ -194,6 +231,24 @@
 <script>
 
 import {ArrPreex,ArrSintomas,ArrCasos,ArrViajes} from '../variables.js'
+import { required } from 'vuelidate/lib/validators'
+
+//Custom validations
+const validarPreex = (value) => {
+    if(value.length == 0){
+        return false
+    }else {
+        return true
+    }
+}
+const validarSintomas = (value) => {
+    if(value.length == 0){
+        return false
+    }else {
+        return true
+    }
+}
+
 
 export default {
     name: "Selpreexistencias",
@@ -203,12 +258,36 @@ export default {
             ArrSintomas,
             ArrCasos,
             ArrViajes,
-            preex:{},
-            sintomas:{},
+            noPreex: null,
+            preex:[],
+            preexFinal: [],
+            noSintomas: null,
+            sintomas:[],
+            sintomasFinal: [],
             casos:null,
             viajes:null,
             radio:null,
             salud:null,
+        }
+    },
+    validations: {
+        preexFinal: {
+            validarPreex
+        },
+        sintomasFinal: {
+            validarSintomas
+        },
+        casos: {
+            required
+        },
+        viajes: {
+            required
+        },
+        radio: {
+            required
+        },
+        salud: {
+            required
         }
     },
     methods: {
@@ -218,11 +297,11 @@ export default {
         return require('../assets/AMSA-logo.png')
         }
         */
-        updatePreexistencias(){
-            this.$emit('updateDataPreex', {data: this.preex, campo: "preex"})
+        updatePreexistencias(datos){
+            this.$emit('updateDataPreex', {data: datos, campo: "preex"})
         },
-        updateSintomas(){
-            this.$emit('updateDataPreex', {data: this.sintomas, campo: "sintomas"})
+        updateSintomas(datos){
+            this.$emit('updateDataPreex', {data: datos, campo: "sintomas"})
         },
         updateCasos(){
             this.$emit('updateDataPreex', {data: this.casos, campo: "casos"})
@@ -236,6 +315,38 @@ export default {
         updateSalud(){
             this.$emit('updateDataPreex', {data: this.salud, campo: "salud"})
         },
+        preexistencias(){
+            this.noPreex = null
+            this.preexFinal = this.preex
+            this.updatePreexistencias(this.preexFinal)
+        },
+        noPreexistencias(){
+            this.preex = []
+            this.preexFinal = [this.noPreex]
+            if(this.preexFinal.includes(null)){
+                this.preexFinal = []
+            }
+            this.updatePreexistencias(this.preexFinal)
+        },
+        conSintomas(){
+            this.noSintomas = null
+            this.sintomasFinal = this.sintomas
+            this.updateSintomas(this.sintomasFinal)
+        },
+        sinSintomas(){
+            this.sintomas = []
+            this.sintomasFinal = [this.noSintomas]
+            if(this.sintomasFinal.includes(null)){
+                this.sintomasFinal = []
+            }
+            this.updateSintomas(this.sintomasFinal)
+        },
+        validar(){
+            this.$v.$touch()
+        },
+        ifVal(){
+            return this.$v.$invalid
+        }
     },
 }
 </script>
@@ -302,6 +413,12 @@ tr, td {
 @media screen and (max-width: 565px){
     .col-md-6, .col-12 {
         padding: 0 !important;
+    }
+    .celdaSintomas {
+        padding-bottom: 24px;
+    }
+    .celdaCasos {
+        padding-bottom: 55px;
     }
 }
 </style>
