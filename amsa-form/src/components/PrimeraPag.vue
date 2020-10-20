@@ -280,7 +280,7 @@ const validarRut = (value) => {
 //Validación de la fecha de nacimiento
 const validarFechaNac = (value) => {
     try{
-        return typeof(value)==Object
+        return typeof(value)=="object" //|| value.toString().includes('/')
     }catch{
         return false
     }
