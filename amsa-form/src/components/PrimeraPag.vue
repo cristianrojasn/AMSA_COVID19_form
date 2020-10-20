@@ -37,23 +37,23 @@
                             <md-field :class="getValidationClass('rut')">
                             <label for="rut">RUT</label>
                             <md-input @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
-                            <span
-                            class="md-error"
-                            v-if="!$v.rut.required"
-                            >Se requiere que ingrese su rut</span>
-                            <span
+                            <!-- <span
                             class="md-error"
                             v-if="!$v.rut.minLength || !$v.rut.maxLength"
-                            >El número de dígitos del rut no es válido</span>
+                            >El número de dígitos del rut no es válido</span> -->
+                            <span
+                            class="md-error"
+                            v-if="!$v.rut.numeric || !$v.rut.validarRut"
+                            >Rut inválido</span>
                         </md-field>
                         
                         <!-- Fecha de nacimiento -->
-                        <md-datepicker :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple">
+                        <md-datepicker :class="getValidationClass('cumple')" id="datePicker" @change="updateCumple" v-model="cumple">
                         <label>Fecha de nacimiento</label>
                         <span
                             class="md-error"
-                            v-if="!$v.cumple.required"
-                            >Ingrese su fecha de nacimiento</span>
+                            v-if="!$v.cumple.required || $v.cumple.validarFechaNac"
+                            >Ingrese su fecha de nacimiento con formato dd/mm/aaaa</span>
                         </md-datepicker>
                         <!-- Número de convivientes -->
                         <md-field :class="getValidationClass('conv')">
@@ -243,7 +243,48 @@
 <script>
 //import { validationMixin } from 'vuelidate'
 import {cargos,turnos,areas,empresas,vicepresidencias,previsiones,comunas} from '../variables.js'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+
+//Custom validations ---------------------------------------
+//Validación del rut con el algoritmo Módulo 11
+const validarRut = (value) => {
+    try {
+        const rutSinDV = value.split('').slice(0,length-1).reverse();
+        const DV = value[value.length-1];
+        let sumaRut = 0
+        let num = 2;
+        for (let digit of rutSinDV) {
+            sumaRut+=Number(digit) * num;
+            num++;
+            if(num>7){
+                num = 2
+            }
+        }
+        // División por 11
+        const sumaRutDiv11 = sumaRut/11;
+        //Trunca, multiplica por 11, resta entre sumaRut y valor truncado por 11, resta 11
+        let DVcalc = 11 - (sumaRut - Math.trunc(sumaRutDiv11) * 11);
+        if(DVcalc==11 || DVcalc==10){
+            DVcalc = 0;
+        }
+        if(DVcalc == DV){
+            return true
+        }else {
+            return false
+        }
+    }catch{
+        return false
+    }
+}
+
+//Validación de la fecha de nacimiento
+const validarFechaNac = (value) => {
+    try{
+        return typeof(value)==Object
+    }catch{
+        return false
+    }
+}
 
 export default {
     name: "DatosPersonales",
@@ -353,9 +394,8 @@ export default {
     }, 
     validations: {
         rut: {
-            required,
-            minLength: minLength(8),
-            maxLength: maxLength(9)
+            numeric,
+            validarRut
         },
         nombreSol: {
             required
@@ -366,13 +406,15 @@ export default {
         numeroTel: {
             required,
             minLength: minLength(8),
-            maxLength: maxLength(8)
+            maxLength: maxLength(8),
+            numeric
         },
         conv: {
             required
         },
         cumple: {
-            required
+            required,
+            validarFechaNac
         },
         prevision: {
             required

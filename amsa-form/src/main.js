@@ -12,11 +12,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Vuelidate from 'vuelidate'
 
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueMaterial);
 Vue.use(firestorePlugin);
 Vue.use(Vuelidate)
+
+Vue.material.locale.dateFormat = 'dd/MM/yyyy'
+
 
 new Vue({
   render: h => h(App),
