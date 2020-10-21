@@ -118,7 +118,7 @@
                       </p>                    
                     </h4>                    
                   </b-col>
-                </b-row>                
+                </b-row>
               </b-container>
             </md-card-header>
             <md-card-actions style="justify-content: center;">

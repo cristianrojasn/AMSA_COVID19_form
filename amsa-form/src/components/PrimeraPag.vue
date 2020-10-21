@@ -58,11 +58,11 @@
                         <!-- Número de convivientes -->
                         <md-field :class="getValidationClass('conv')">
                         <label>Número de convivientes</label>
-                        <md-input @input="updateConvivientes" v-model="conv" type="number"></md-input>
+                        <md-input @input="updateConvivientes" min="0" v-model="conv" type="number"></md-input>
                         <span
                             class="md-error"
-                            v-if="!$v.conv.required"
-                            >Se requiere que ingrese el N° de convivientes</span>
+                            v-if="!$v.conv.integer || !$v.conv.minValue || !$v.conv.required"
+                            >Se requiere que ingrese un N° de convivientes válido</span>
                         </md-field>
                         <!-- Previsión -->
                         <md-field :class="getValidationClass('prevision')">
@@ -243,7 +243,7 @@
 <script>
 //import { validationMixin } from 'vuelidate'
 import {cargos,turnos,areas,empresas,vicepresidencias,previsiones,comunas} from '../variables.js'
-import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, numeric, minValue, integer } from 'vuelidate/lib/validators'
 
 //Custom validations ---------------------------------------
 //Validación del rut con el algoritmo Módulo 11
@@ -332,7 +332,8 @@ export default {
             this.$emit('updateData', {data: this.numeroTel, campo: "numeroTel"})
         },
         updateCumple(){
-            this.$emit('updateData', {data: this.cumple, campo: "cumple"})
+            const strDate = this.cumple.getDate() + "/" + (this.cumple.getMonth() + 1) + "/" + this.cumple.getFullYear()
+            this.$emit('updateData', {data: strDate, campo: "cumple"})
         },
         updateConvivientes(){
             this.$emit('updateData', {data: this.conv, campo: "conv"})
@@ -394,6 +395,7 @@ export default {
     }, 
     validations: {
         rut: {
+            required,
             numeric,
             validarRut
         },
@@ -410,7 +412,9 @@ export default {
             numeric
         },
         conv: {
-            required
+            required,
+            integer,
+            minValue: minValue(0)
         },
         cumple: {
             required,
