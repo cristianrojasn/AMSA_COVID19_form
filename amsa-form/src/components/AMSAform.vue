@@ -91,9 +91,7 @@
                 <b-row class="md-display-4">
                   <b-col>
                     <img
-                      class="centered"
-                      width="280px"
-                      height="280px"
+                      class="centered imagPrev"
                       src="../assets/prevencion-contagio.png"
                       >
                   </b-col>
@@ -315,6 +313,11 @@ background-image: repeating-linear-gradient(
 .md-error {
   color: red;
 }
+
+.imagPrev {
+  width: 70%;
+  height: auto;
+}
 /*
 table {
   width: 100%;
@@ -331,6 +334,9 @@ table {
   }
   #titulo-foro {
     text-align: center;
+  }
+  .imagPrev {
+    width: 100%;
   }
 }
 </style>

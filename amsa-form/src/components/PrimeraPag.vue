@@ -48,7 +48,7 @@
                         </md-field>
                         
                         <!-- Fecha de nacimiento -->
-                        <md-datepicker :class="getValidationClass('cumple')" id="datePicker" @change="updateCumple" v-model="cumple">
+                        <md-datepicker :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple">
                         <label>Fecha de nacimiento</label>
                         <span
                             class="md-error"
