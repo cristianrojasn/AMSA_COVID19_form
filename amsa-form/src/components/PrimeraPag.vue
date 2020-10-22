@@ -206,7 +206,7 @@
                         </md-field>
                 <!---------- Seccion Piso ---------->        
                         <md-field :class="getValidationClass('area')">
-                            <label for="area">Piso de destino</label>
+                            <label for="area">Piso edificio corporativo</label>
                             <md-select @input="updateArea" name="area" id="area" v-model="area" md-dense>
                                 <md-option v-for="ar of areas" :key="ar" :value="ar">
                                     {{ ar }}
