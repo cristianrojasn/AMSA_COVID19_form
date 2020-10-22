@@ -17,7 +17,7 @@
                     <md-card-content>
                         <md-field :class="getValidationClass('nombreSol')">
                             <label for="nombre">Nombre</label>
-                            <md-input @input="updateNombreSol" name="nombre" id="nombre"  autocomplete="given-name" v-model="nombreSol"/>
+                            <md-input ref="nombreSol" @input="updateNombreSol" name="nombre" id="nombre"  autocomplete="given-name" v-model="nombreSol"/>
                             <span
                             class="md-error"
                             v-if="!$v.nombreSol.required"
@@ -26,7 +26,7 @@
                         <!-- Apellido -->
                         <md-field :class="getValidationClass('apellidoSol')">
                             <label for="apellido">Apellido</label>
-                            <md-input @input="updateApellidoSol" name="apellido" id="apellido"  autocomplete="given-name" v-model="apellidoSol"/>
+                            <md-input ref="apellidoSol" @input="updateApellidoSol" name="apellido" id="apellido"  autocomplete="given-name" v-model="apellidoSol"/>
                             <span
                             class="md-error"
                             v-if="!$v.apellidoSol.required"
@@ -36,7 +36,7 @@
                         <!-- RUT -->
                             <md-field :class="getValidationClass('rut')">
                             <label for="rut">RUT</label>
-                            <md-input @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
+                            <md-input ref="rut" @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
                             <!-- <span
                             class="md-error"
                             v-if="!$v.rut.minLength || !$v.rut.maxLength"
@@ -48,7 +48,7 @@
                         </md-field>
                         
                         <!-- Fecha de nacimiento -->
-                        <md-datepicker :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple">
+                        <md-datepicker ref="cumple" :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple">
                         <label>Fecha de nacimiento</label>
                         <span
                             class="md-error"
@@ -58,7 +58,7 @@
                         <!-- Número de convivientes -->
                         <md-field :class="getValidationClass('conv')">
                         <label>Número de convivientes</label>
-                        <md-input @input="updateConvivientes" min="0" v-model="conv" type="number"></md-input>
+                        <md-input ref="conv" @input="updateConvivientes" min="0" v-model="conv" type="number"></md-input>
                         <span
                             class="md-error"
                             v-if="!$v.conv.integer || !$v.conv.minValue || !$v.conv.required"
@@ -67,7 +67,7 @@
                         <!-- Previsión -->
                         <md-field :class="getValidationClass('prevision')">
                             <label for="prevision">Previsión</label>
-                            <md-select @input="updatePrevision" name="prevision" id="prevision" v-model="prevision" md-dense>
+                            <md-select ref="prevision" @input="updatePrevision" name="prevision" id="prevision" v-model="prevision" md-dense>
                                 <md-option v-for="prev of previsiones" :key="prev" :value="prev">
                                     {{ prev }}
                                 </md-option>
@@ -82,7 +82,7 @@
                             <md-icon class="fa fa-location-arrow md-size-1x"></md-icon>
                             <span>Región</span>
                             </label>
-                            <md-select @input="updateRegion" name="region" id="region" v-model="reg">
+                            <md-select ref="reg" @input="updateRegion" name="region" id="region" v-model="reg">
                             <md-option
                                 v-for="(regi,index) of Object.keys(comunas)"
                                 :key="regi"
@@ -104,7 +104,7 @@
                             v-if="reg === null"
                             for="comuna"
                             >Comuna</label>
-                            <md-select
+                            <md-select ref="com"
                             @input="updateComuna"
                             v-else
                             name="comuna"
@@ -142,7 +142,7 @@
                         <md-field :class="getValidationClass('numeroTel')">
                             <label for="numeroTel">Número de teléfono</label>
                             <span class="md-prefix">+569</span>
-                            <md-input @input="updateNumeroTel" type="tel" name="numeroTel" id="numeroTel"  autocomplete="given-name" v-model="numeroTel"/>
+                            <md-input ref="numeroTel" @input="updateNumeroTel" type="tel" name="numeroTel" id="numeroTel"  autocomplete="given-name" v-model="numeroTel"/>
                             <span
                             class="md-error"
                             v-if="!$v.numeroTel.required"
@@ -155,7 +155,7 @@
                     <!---------- Seccion Correo personal--------->
                         <md-field :class="getValidationClass('correo')">
                             <label for="correo">Correo</label>
-                            <md-input @input="updateCorreo" type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
+                            <md-input ref="correo" @input="updateCorreo" type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
                             <span
                             class="md-error"
                             v-if="!$v.correo.required"
@@ -168,7 +168,7 @@
                 <!---------- Seccion Correo supervisor --------->
                         <md-field :class="getValidationClass('correoSup')">
                             <label for="correo_sup">Correo supervisor</label>
-                            <md-input @input="updateCorreoResp" type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
+                            <md-input ref="correoSup" @input="updateCorreoResp" type="email" name="correo_sup" id="correo_sup"  autocomplete="given-name" v-model="correoSup"/>
                             <span
                             class="md-error"
                             v-if="!$v.correoSup.required"
@@ -181,7 +181,7 @@
                 <!---------- Seccion Cargos --------->        
                         <md-field :class="getValidationClass('car')">
                             <label for="puestos">Cargo</label>
-                            <md-select @input="updateCargo" name="puestos" id="puestos" v-model="car" md-dense>
+                            <md-select ref="car" @input="updateCargo" name="puestos" id="puestos" v-model="car" md-dense>
                                 <md-option v-for="cargo of cargos" :key="cargo" :value="cargo">
                                     {{ cargo }}
                                 </md-option>
@@ -194,7 +194,7 @@
                 <!---------- Seccion turno ---------->
                         <md-field :class="getValidationClass('turn')">
                             <label for="turno">Turno</label>
-                            <md-select @input="updateTurno" name="turno" id="turno" v-model="turn" md-dense>
+                            <md-select ref="turn" @input="updateTurno" name="turno" id="turno" v-model="turn" md-dense>
                                 <md-option v-for="tu of turnos" :key="tu" :value="tu">
                                     {{ tu }}
                                 </md-option>
@@ -218,7 +218,7 @@
                             >Se requiere que ingrese su area</span>
                         </md-field>
                 <!---------- Seccion VP---------->        
-                        <md-autocomplete :class="getValidationClass('vicepresidencia')" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
+                        <md-autocomplete :class="getValidationClass('vicepresidencia')" ref="vicepresidencia" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
                         <label>Vicepresidencia</label>
                         <span
                             class="md-error"
@@ -226,7 +226,7 @@
                             >Se requiere que ingrese una vicepresidencia</span>
                         </md-autocomplete>
                 <!---------- Seccion empresa---------->       
-                        <md-autocomplete :class="getValidationClass('empresa')" @input="updateEmpresa" name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
+                        <md-autocomplete ref="empresa" :class="getValidationClass('empresa')" @input="updateEmpresa" name="empresa" id="empresa" v-model="empresa" :md-options="empresas" md-dense>
                         <label>Empresa</label>
                         <span
                             class="md-error"
@@ -381,6 +381,24 @@ export default {
         },
         ifVal(){
             return this.$v.$invalid
+        },
+        focusOnInvalid(){
+            for(let key in Object.keys(this.$v)){
+                // 2. Extract the input
+                const input = Object.keys(this.$v)[key];
+                // 3. Remove special properties
+                if (input.includes("$")) return false;
+
+                    // 4. Check for errors
+                if (this.$v[input].$error) {
+                    // 5. Focus the input with the error
+                    console.log(this.$refs[input])
+                    this.$refs[input].$el.focus();
+
+                    // 6. Break out of the loop
+                    break;
+                }
+            }
         }
         /* //Actualizar nombre de empresa dinámicamente
         actualizarEmpresaArea(value){

@@ -129,6 +129,7 @@
               >Enviar</md-button>
             </md-card-actions>
           </md-card>
+          <md-dialog-alert :md-active.sync="userSaved" md-title="Formulario envíado exitosamente" :md-content="Enviado" md-confirm-text="Salir"/>
       </form>
     </div>
   </div>
@@ -176,8 +177,16 @@ export default {
           casos:null,
           viajes:null,
           radio:null,
-          salud:null
-        }
+          salud:null,
+          timestamp: null
+        },
+        userSaved: false,
+        sending: false
+      }
+    },
+    computed: {
+      Enviado(){
+        return 'Se ha registrado su envío correctamente:' + '<br> <strong>- Fecha: </strong>' + this.form.timestamp
       }
     },
     computed: {
@@ -196,6 +205,11 @@ export default {
         let newRef = registerRef.push();
         this.$set(this.form, 'timestamp', this.getNow())
         newRef.set(this.form);
+
+        window.setTimeout(() => {
+          this.userSaved = true
+          this.sending = true
+        }, 1500)
       },
       getNow: function () {
       const today = new Date();
@@ -213,6 +227,8 @@ export default {
         if (!this.$refs.PrimeraPagina.ifVal() && !this.$refs.seccionPreex.ifVal()) {
           console.log('Datos enviados')
           this.sendDataFirebase()
+        }else{
+          this.$refs.PrimeraPagina.focusOnInvalid()
         }
       }
     },
