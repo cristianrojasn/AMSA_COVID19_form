@@ -231,7 +231,7 @@
 <script>
 
 import {ArrPreex,ArrSintomas,ArrCasos,ArrViajes} from '../variables.js'
-import { required, sameAs } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 
 //Custom validations
 const validarPreex = (value) => {
@@ -282,7 +282,6 @@ export default {
         },
         viajes: {
             required,
-            sameAs: sameAs(() => true)
         },
         radio: {
             required
