@@ -32,7 +32,7 @@
                         </div>
                         <span
                             class="md-error"
-                            v-if="!$v.preexFinal.validarPreex"
+                            v-if="!$v.preexFinal.validarPreex && $v.preexFinal.$dirty"
                             >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
@@ -70,7 +70,7 @@
                         </div>
                         <span
                             class="md-error"
-                            v-if="!$v.sintomasFinal.validarSintomas"
+                            v-if="!$v.sintomasFinal.validarSintomas && $v.sintomasFinal.$dirty"
                             >Se requiere que seleccione una opción</span>    
                     </md-card-content>    
                 </md-card>
@@ -102,7 +102,7 @@
                         </div>    
                             <span
                             class="md-error"
-                            v-if="!$v.casos.required"
+                            v-if="!$v.casos.required && $v.casos.$dirty"
                             >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
@@ -136,7 +136,7 @@
                         </div>
                             <span
                             class="md-error"
-                            v-if="!$v.viajes.required && viajes == null"
+                            v-if="!$v.viajes.required && $v.viajes.$dirty"
                             >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
@@ -189,7 +189,7 @@
                         </div>
                         <span
                             class="md-error"
-                            v-if="!$v.radio.required"
+                            v-if="!$v.radio.required && $v.radio.$dirty"
                             >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
@@ -219,7 +219,7 @@
                         </div>
                         <span
                             class="md-error"
-                            v-if="!$v.salud.required"
+                            v-if="!$v.salud.required && $v.salud.$dirty"
                             >Se requiere que seleccione una opción</span>
                     </md-card-content>    
                 </md-card>
@@ -231,7 +231,7 @@
 <script>
 
 import {ArrPreex,ArrSintomas,ArrCasos,ArrViajes} from '../variables.js'
-import { required } from 'vuelidate/lib/validators'
+import { required, sameAs } from 'vuelidate/lib/validators'
 
 //Custom validations
 const validarPreex = (value) => {
@@ -281,7 +281,8 @@ export default {
             required
         },
         viajes: {
-            required
+            required,
+            sameAs: sameAs(() => true)
         },
         radio: {
             required
