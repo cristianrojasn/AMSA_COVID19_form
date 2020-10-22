@@ -179,8 +179,13 @@ export default {
           salud:null
         }
       }
+    },
+    computed: {
+      Suceess() {
+      return 'Se ha registrado la asistencia correctamente:' + '<br> <b>- Fecha: </b> ' + new Date() + '<br> <b>- Foro: </b>' + this.form.nombreSol+' '+this.form.apellidoSol
+      }
     },  
-    methods: {
+     methods: {
       update(value){
         this.form[value.campo] = value.data
       },
@@ -199,6 +204,7 @@ export default {
       const dateTime = date + ' ' + time;
       return dateTime
     },
+    
 
       validateUser(){
         //this.$v.$touch()
