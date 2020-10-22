@@ -189,12 +189,7 @@ export default {
         return 'Se ha registrado su envío correctamente:' + '<br> <strong>- Fecha: </strong>' + this.form.timestamp
       }
     },
-    computed: {
-      Suceess() {
-      return 'Se ha registrado la asistencia correctamente:' + '<br> <b>- Fecha: </b> ' + new Date() + '<br> <b>- Foro: </b>' + this.form.nombreSol+' '+this.form.apellidoSol
-      }
-    },  
-     methods: {
+    methods: {
       update(value){
         this.form[value.campo] = value.data
       },
