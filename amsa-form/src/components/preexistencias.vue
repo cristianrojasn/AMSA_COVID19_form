@@ -174,7 +174,7 @@
                             terrestre o de cualquier otra forma o circunstancia)?
                             </p>
                             <img
-                            class="centered"
+                            class="centered imagContg"
                             width="280px"
                             height="280px"
                             src="../assets/tablero.png"
@@ -402,6 +402,11 @@ tr, td {
     margin-left: auto;
     margin-right: auto;
     width: 95%;
+}
+.imagContg {
+  width: 70%;
+  height: auto;
+  max-width:400px;
 }
 
 @media screen and (max-width: 800px){

@@ -317,6 +317,7 @@ background-image: repeating-linear-gradient(
 .imagPrev {
   width: 70%;
   height: auto;
+  max-width:400px;
 }
 /*
 table {
