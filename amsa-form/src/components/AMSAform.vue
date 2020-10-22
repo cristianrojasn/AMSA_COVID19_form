@@ -213,6 +213,7 @@ export default {
       const dateTime = date + ' ' + time;
       return dateTime
     },
+    
 
       validateUser(){
         //this.$v.$touch()
@@ -333,6 +334,7 @@ background-image: repeating-linear-gradient(
 .imagPrev {
   width: 70%;
   height: auto;
+  max-width:400px;
 }
 /*
 table {
