@@ -207,7 +207,11 @@
                 <!---------- Seccion Piso ---------->        
                         <md-field :class="getValidationClass('area')">
                             <label for="area">Piso edificio corporativo</label>
+<<<<<<< HEAD
                             <md-select ref="area" @input="updateArea" name="area" id="area" v-model="area" md-dense>
+=======
+                            <md-select @input="updateArea" name="area" id="area" v-model="area" md-dense>
+>>>>>>> ad5c48a031f179352a36315266dc1f6fbf8c841b
                                 <md-option v-for="ar of areas" :key="ar" :value="ar">
                                     {{ ar }}
                                 </md-option>
