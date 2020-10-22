@@ -188,7 +188,7 @@ export default {
       Enviado(){
         return 'Se ha registrado su envío correctamente:' + '<br> <strong>- Fecha: </strong>' + this.form.timestamp
       }
-    },
+    },  
     methods: {
       update(value){
         this.form[value.campo] = value.data
