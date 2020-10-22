@@ -206,7 +206,7 @@
                         </md-field>
                 <!---------- Seccion Piso ---------->        
                         <md-field :class="getValidationClass('area')">
-                            <label for="area">Piso de destino</label>
+                            <label for="area">Piso edificio corporativo</label>
                             <md-select ref="area" @input="updateArea" name="area" id="area" v-model="area" md-dense>
                                 <md-option v-for="ar of areas" :key="ar" :value="ar">
                                     {{ ar }}
@@ -215,14 +215,14 @@
                             <span
                             class="md-error"
                             v-if="!$v.area.required"
-                            >Se requiere que ingrese su area</span>
+                            >Se requiere que ingrese su piso</span>
                         </md-field>
                 <!---------- Seccion VP---------->        
                         <md-autocomplete :class="getValidationClass('vicepresidencia')" ref="vicepresidencia" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
                         <label>Vicepresidencia</label>
                         <span
                             class="md-error"
-                            v-if="!$v.area.required"
+                            v-if="!$v.vicepresidencia.required"
                             >Se requiere que ingrese una vicepresidencia</span>
                         </md-autocomplete>
                 <!---------- Seccion empresa---------->       
@@ -230,8 +230,8 @@
                         <label>Empresa</label>
                         <span
                             class="md-error"
-                            v-if="!$v.area.required"
-                            >Se requiere que ingrese una vicepresidencia</span>
+                            v-if="!$v.empresa.required"
+                            >Se requiere que ingrese una empresa</span>
                         </md-autocomplete>                                                 
                     </md-card-content>
                 </md-card>
@@ -392,7 +392,6 @@ export default {
                     // 4. Check for errors
                 if (this.$v[input].$error) {
                     // 5. Focus the input with the error
-                    console.log(this.$refs[input])
                     this.$refs[input].$el.focus();
 
                     // 6. Break out of the loop
