@@ -8,7 +8,12 @@
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-id-card md-size-2x"></md-icon>
-                            <span style="margin-left: 18px">Antecedentes de salud</span>
+                            <span 
+                            style="margin-left: 18px"
+                            ref="preexFinal"
+                            tabindex="-1"
+                            >Antecedentes de salud
+                            </span>
                             <p class="md-caption">
                             Indique si a usted le aplica alguna de las siguientes condiciones de salud. <b>EN CASO QUE NO:</b> marque la última opción!
                             </p>
@@ -46,7 +51,10 @@
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-thermometer-full md-size-2x"></md-icon>
-                            <span>Síntomas de COVID</span>
+                            <span
+                            ref="sintomasFinal"
+                            tabindex="-1"
+                            >Síntomas de COVID</span>
                             <p class="md-caption">
                             ¿En las últimas 24 horas usted o alguna de las personas con las que convive ha tenido alguno de los siguientes síntomas? - <strong>EN CASO QUE NO:</strong> marque la última opción!</p>
                         </div>
@@ -84,7 +92,10 @@
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-users md-size-2x"></md-icon>
-                            <span style="margin-left: 18px">Casos COVID</span>
+                            <span style="margin-left: 18px"
+                            ref="casos"
+                            tabindex="-1"
+                            >Casos COVID</span>
                             <p class="md-caption">
                             Para esta pregunta tenga presente que las personas que se han tomado PCR deben cumplir cuarentena obligatoria hasta que les sea notificado el resultado
                             </p>
@@ -116,7 +127,10 @@
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-plane md-size-2x"></md-icon>
-                            <span>Viajes</span>
+                            <span
+                            ref="viajes"
+                            tabindex="-1"
+                            >Viajes</span>
                             <p class="md-caption">
                             Si no se identifica con alguno de los puntos, omita la pregunta - <strong>EN CASO QUE NO</strong>: marque la última opción!
                             </p>
@@ -166,7 +180,10 @@
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-handshake-o md-size-2x"></md-icon>
-                            <span style="margin-left: 18px">Contacto COVID</span>
+                            <span style="margin-left: 18px"
+                            ref="radio"
+                            tabindex="-1"
+                            >Contacto COVID</span>
                             <p class="md-caption">
                             ¿Durante su descanso usted o alguna de las personas con las que usted 
                             convive tuvo contacto con alguna de las siguientes personas (en reuniones
@@ -203,7 +220,10 @@
                     <md-card-header>
                         <div class="md-title">
                             <md-icon class="fa fa-hospital-o md-size-2x"></md-icon>
-                            <span style="margin-left: 18px">¿Alguna de las personas con las que convive, trabaja o ha visitado 
+                            <span style="margin-left: 18px"
+                            ref="salud"
+                            tabindex="-1"
+                            >¿Alguna de las personas con las que convive, trabaja o ha visitado 
                             trabaja en alguna entidad que maneje pacientes Covid-19?</span>
                             <p class="md-caption">
                             Hospitales, centros de salud, residencias sanitarias o que maneje muestras de laboratorio 
@@ -346,6 +366,40 @@ export default {
         },
         ifVal(){
             return this.$v.$invalid
+        },
+        focusOnInvalid(){
+            // 1. Es necesario que cada input tenga un atributo ref con el mismo nombre de v-model
+            for(let key in Object.keys(this.$v)){
+                // 2. Extraer los inputs de este componente
+                const input = Object.keys(this.$v)[key];
+                console.log(input);
+                // 3. Remover propiedades que no importan
+                if (input.includes("$")) return false;
+
+                    // 4. Chequear si hay error en algún input
+                if (this.$v[input].$error) {
+                    console.log(this.$refs);
+                    console.log(this.$refs[input])
+                    // 5. Hacer focus en el elemento que hay error
+                    this.$refs[input].focus();
+
+                    // 6. Una vez encontrado el input, terminar el loop
+                    break;
+                }
+            }
+        },
+        resetPreexistencias(){
+            this.$v.$reset();            
+            this.noPreex = null
+            this.preex = []
+            this.preexFinal = []
+            this.noSintomas = null
+            this.sintomas = []
+            this.sintomasFinal = []
+            this.casos = null
+            this.viajes = null
+            this.radio = null
+            this.salud = null
         }
     },
 }
@@ -404,9 +458,9 @@ tr, td {
     width: 95%;
 }
 .imagContg {
-  width: 70%;
-  height: auto;
-  max-width:400px;
+    width: 70%;
+    height: auto;
+    max-width:400px;
 }
 
 @media screen and (max-width: 800px){

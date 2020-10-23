@@ -383,32 +383,42 @@ export default {
             return this.$v.$invalid
         },
         focusOnInvalid(){
+            // 1. Es necesario que cada input tenga un atributo ref con el mismo nombre de v-model
             for(let key in Object.keys(this.$v)){
-                // 2. Extract the input
+                // 2. Extraer los inputs de este componente
                 const input = Object.keys(this.$v)[key];
-                // 3. Remove special properties
+                // 3. Remover propiedades que no importan
                 if (input.includes("$")) return false;
 
-                    // 4. Check for errors
+                    // 4. Chequear si hay error en algún input
                 if (this.$v[input].$error) {
-                    // 5. Focus the input with the error
+                    // 5. Hacer focus en el elemento que hay error
                     this.$refs[input].$el.focus();
 
-                    // 6. Break out of the loop
+                    // 6. Una vez encontrado el input, terminar el loop
                     break;
                 }
             }
+        },
+        resetPrimeraPag(){
+            this.$v.$reset();
+            this.rut = null
+            this.nombreSol = null
+            this.apellidoSol = null
+            this.numeroTel = null
+            this.cumple = null
+            this.conv = null
+            this.prevision = null
+            this.reg = null
+            this.com = null
+            this.correo = null
+            this.correoSup = null
+            this.car = null
+            this.turn = null
+            this.area = null
+            this.empresa = null
+            this.vicepresidencia = null
         }
-        /* //Actualizar nombre de empresa dinámicamente
-        actualizarEmpresaArea(value){
-            if(value.campo == "empresa"){
-                this.empresa = value.data
-                this.$emit('updateData', {data: this.empresa, campo: "empresa"})
-            }else if(value.campo == "area"){
-                this.area = value.data
-                this.$emit('updateData', {data: this.area, campo: "area"})
-            }
-        }*/
     }, 
     validations: {
         rut: {

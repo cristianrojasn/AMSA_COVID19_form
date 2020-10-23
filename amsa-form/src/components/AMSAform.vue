@@ -204,6 +204,8 @@ export default {
         window.setTimeout(() => {
           this.userSaved = true
           this.sending = true
+          //this.$refs.PrimeraPagina.resetPrimeraPag()
+          //this.$refs.seccionPreex.resetPreexistencias()
         }, 1500)
       },
       getNow: function () {
@@ -216,14 +218,15 @@ export default {
     
 
       validateUser(){
-        //this.$v.$touch()
-        this.$refs.seccionPreex.validar()
         this.$refs.PrimeraPagina.validar()
+        this.$refs.seccionPreex.validar()
         if (!this.$refs.PrimeraPagina.ifVal() && !this.$refs.seccionPreex.ifVal()) {
           console.log('Datos enviados')
           this.sendDataFirebase()
-        }else{
+        }else if(this.$refs.PrimeraPagina.ifVal()){
           this.$refs.PrimeraPagina.focusOnInvalid()
+        }else{
+          this.$refs.seccionPreex.focusOnInvalid()
         }
       }
     },
