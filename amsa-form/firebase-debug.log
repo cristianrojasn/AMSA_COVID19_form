@@ -1,0 +1,25 @@
+[debug] [2020-10-24T03:04:38.151Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T03:04:38.153Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\croja\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-10-24T03:04:38.153Z] CLI Version:   8.12.1
+[debug] [2020-10-24T03:04:38.154Z] Platform:      win32
+[debug] [2020-10-24T03:04:38.154Z] Node Version:  v12.18.3
+[debug] [2020-10-24T03:04:38.239Z] Time:          Sat Oct 24 2020 00:04:38 GMT-0300 (Chile Summer Time)
+[debug] [2020-10-24T03:04:38.239Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T03:04:38.239Z] 
+[debug] [2020-10-24T03:04:38.314Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-24T03:04:38.314Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\croja\OneDrive\Documents\Formulario_AMSA\AMSA_COVID19_form\amsa-form
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
