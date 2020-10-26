@@ -221,7 +221,7 @@
                         </md-field>
                 <!---------- Seccion VP---------->        
                         <md-autocomplete :class="getValidationClass('vicepresidencia')" ref="vicepresidencia" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
-                        <label>Vicepresidencia</label>
+                        <label>Vicepresidencia/compañía </label>
                         <span
                             class="md-error"
                             v-if="!$v.vicepresidencia.required"
