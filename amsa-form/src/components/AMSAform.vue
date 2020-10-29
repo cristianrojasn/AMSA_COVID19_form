@@ -203,9 +203,9 @@ export default {
 
         window.setTimeout(() => {
           this.userSaved = true
-          this.sending = true
-          //this.$refs.PrimeraPagina.resetPrimeraPag()
-          //this.$refs.seccionPreex.resetPreexistencias()
+          //this.sending = true
+          this.$refs.PrimeraPagina.resetPrimeraPag()
+          this.$refs.seccionPreex.resetPreexistencias()
         }, 1500)
       },
       getNow: function () {
