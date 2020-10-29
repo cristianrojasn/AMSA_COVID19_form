@@ -134,6 +134,8 @@
                             <span> Contacto y trabajo</span>
                             <p class="md-caption">
                             ¡Recuerde que correo electronico es muy importante para recibir la aprobación!
+                            <br>
+                            VPACS: Asuntos Corporativos y Sustentabilidad
                             </p>
                         </div>
                     </md-card-header>
@@ -219,7 +221,7 @@
                         </md-field>
                 <!---------- Seccion VP---------->        
                         <md-autocomplete :class="getValidationClass('vicepresidencia')" ref="vicepresidencia" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
-                        <label>Vicepresidencia</label>
+                        <label>Vicepresidencia/compañía </label>
                         <span
                             class="md-error"
                             v-if="!$v.vicepresidencia.required"
