@@ -37,7 +37,7 @@
                             <md-field :class="getValidationClass('rut')">
                             <label for="rut">RUT</label>
                             <md-input ref="rut" @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
-                            <span class="md-helper-text">Ejemplo: 123456789 (reemplazar 0 por k)</span>
+                            <span class="md-helper-text">Ejemplo: 123456789 (reemplazar k por 0)</span>
                             <!-- <span
                             class="md-error"
                             v-if="!$v.rut.minLength || !$v.rut.maxLength"
@@ -134,11 +134,6 @@
                         <div class="md-title">
                             <md-icon class="fa fa-envelope md-size-2x"></md-icon>
                             <span> Contacto y trabajo</span>
-                            <p class="md-caption">
-                            ¡Recuerde que correo electronico es muy importante para recibir la aprobación!
-                            <br>
-                            VPACS: Asuntos Corporativos y Sustentabilidad
-                            </p>
                         </div>
                     </md-card-header>
                     <md-card-content>
@@ -160,6 +155,7 @@
                         <md-field :class="getValidationClass('correo')">
                             <label for="correo">Correo</label>
                             <md-input ref="correo" @input="updateCorreo" type="email" name="correo" id="correo"  autocomplete="given-name" v-model="correo"/>
+                            <span class="md-helper-text">¡Recuerde que su e-mail es muy importante para recibir la aprobación!</span>
                             <span
                             class="md-error"
                             v-if="!$v.correo.required"
@@ -224,6 +220,7 @@
                 <!---------- Seccion VP---------->        
                         <md-autocomplete :class="getValidationClass('vicepresidencia')" ref="vicepresidencia" @input="updateVicepresidencia" name="vp" id="vp" v-model="vicepresidencia" :md-options="vicepresidencias" md-dense>
                         <label>Vicepresidencia/compañía </label>
+                        <span class="md-helper-text">VPACS: Asuntos Corporativos y Sustentabilidad</span>
                         <span
                             class="md-error"
                             v-if="!$v.vicepresidencia.required"
