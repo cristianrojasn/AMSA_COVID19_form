@@ -10,9 +10,9 @@
                             <md-icon class="fa fa-user md-size-2x"></md-icon>
                             <span>Datos personales</span>
                         </div>
-                        <p class="md-caption">
+                        <!-- <p class="md-caption">
                         ( RUT SIN GUION: ejemplo 123456789 - el k se reemplaza con 0)
-                        </p>
+                        </p> -->
                     </md-card-header>
                     <md-card-content>
                         <md-field :class="getValidationClass('nombreSol')">
@@ -37,6 +37,7 @@
                             <md-field :class="getValidationClass('rut')">
                             <label for="rut">RUT</label>
                             <md-input ref="rut" @input="updateRut" name="rut" id="rut"  autocomplete="given-name" v-model="rut"/>
+                            <span class="md-helper-text">Ejemplo: 123456789 (reemplazar 0 por k)</span>
                             <!-- <span
                             class="md-error"
                             v-if="!$v.rut.minLength || !$v.rut.maxLength"
@@ -48,8 +49,9 @@
                         </md-field>
                         
                         <!-- Fecha de nacimiento -->
-                        <md-datepicker ref="cumple" :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple">
+                        <md-datepicker ref="cumple" :class="getValidationClass('cumple')" id="datePicker" @input="updateCumple" v-model="cumple" :md-open-on-focus="false">
                         <label>Fecha de nacimiento</label>
+                        <span class="md-helper-text">Formato: dd/mm/aaaa</span>
                         <span
                             class="md-error"
                             v-if="!$v.cumple.required || $v.cumple.validarFechaNac"
